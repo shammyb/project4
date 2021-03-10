@@ -30,10 +30,10 @@ class User(db.Model, BaseModel):
 
   
     comments = db.relationship('Comment', backref='user', cascade="all, delete")
-    
-    posts = db.relationship('Post', backref='user', cascade="all, delete")
 
 
+    posts = db.relationship('Language', backref='post', secondary=user_post_join)
+    languages = db.relationship('Language', backref='post', secondary=user_language_join)
  
     @hybrid_property
     def password(self):
