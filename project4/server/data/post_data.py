@@ -12,7 +12,8 @@ list_posts = [
         image="a", 
         availability="I am available on Wednesday afternoons",
         description="I would like to improve my English! I can teach you Spanish",
-        user_id=1
+        user_id=1,
+        language_id=1
         ),
     
     Post(
@@ -24,7 +25,8 @@ list_posts = [
         image="a", 
         availability="I can only do classes on the weekend",
         description="I'm moving to Buenos Aires soon and need to brush up on my Spanish!",
-        user_id=2
+        user_id=2,
+        language_id=2
         ),
     
     Post(
@@ -36,7 +38,8 @@ list_posts = [
         image="a", 
         availability="Monday mornings or Friday afternoons",
         description="I just got back from Morocco and don't want to lose my Arabic. Anyone interested in conversation classes?",
-        user_id=1
+        user_id=1,
+        language_id=4
         ),
 
     Post(
@@ -48,7 +51,8 @@ list_posts = [
         image="a", 
         availability="Every day of the week except Thursdays and Sundays",
         description="I want to be able to communicate better with my grandmother who lives in Israel!",
-        user_id=2
+        user_id=2,
+        language_id=6
         ),
     
     Post(
@@ -60,7 +64,8 @@ list_posts = [
         image="ToDo", 
         availability="all day every day",
         description="just your average hebrew speaker",
-        user_id=3
+        user_id=3,
+        language_id=1
         ),
     
     Post(
@@ -72,7 +77,8 @@ list_posts = [
         image="ToDo", 
         availability="all day every day",
         description="shalom i would love to learn to speak japanese",
-        user_id=3
+        user_id=3,
+        language_id=5
         ),
 
 # OFFERS
@@ -85,7 +91,8 @@ list_posts = [
         image="", 
         availability="Tuesday evenings and Saturday mornings",
         description="Me encantaría ayudarte con el castellano",
-        user_id=1
+        user_id=1,
+        language_id=2
         ),
         
     Post(
@@ -97,7 +104,8 @@ list_posts = [
         image="", 
         availability="Every weekday after 5pm",
         description="I lived in Beijing for five years and would be happy to teach you the basics",
-        user_id=1
+        user_id=1,
+        language_id=5
         ),
 
     Post(
@@ -109,7 +117,8 @@ list_posts = [
         image="", 
         availability="Tuesdays and Saturdays",
         description="Born in Paris, but raised in New Orleans, I want to keep Louisiana French alive. Hit me up",
-        user_id=2
+        user_id=2,
+        language_id=3
         ),
 
     Post(
@@ -121,7 +130,8 @@ list_posts = [
         image="", 
         availability="Mondays",
         description="My mother was raised in Morocco and I am an expert in Moroccan Arabic. Let me help you",
-        user_id=2
+        user_id=2,
+        language_id=4
         ),
 
     Post(
@@ -133,7 +143,8 @@ list_posts = [
         image="a", 
         availability="everyday",
         description="shalom if youd like to go to israel and not get hit with tourist prices learn hebrew with me!",
-        user_id=3
+        user_id=3,
+        language_id=6
         ),
 
     Post(
@@ -145,7 +156,8 @@ list_posts = [
         image="a", 
         availability="mondays, wednesdays and fridays",
         description="if you would like to speak english hit me up",
-        user_id=3
+        user_id=3,
+        language_id=1
         )
     
 
