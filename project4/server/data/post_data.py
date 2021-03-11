@@ -1,19 +1,11 @@
 from models.post import Post
-from models.language import Language
-
-languages = [
-    Language(lang_name="English"),
-    Language(lang_name="Spanish"),
-    Language(lang_name="French"),
-    Language(lang_name="Arabic"),
-    Language(lang_name="Mandarin"),
-    Language(lang_name="Hebrew")
-]
+from data.language_data import list_languages
+print(list_languages[0].lang_name)
 
 list_posts = [
     Post(
         #language_name="English", 
-        language_name=languages[0], 
+        language_name=list_languages[0].lang_name, 
         level= 1, 
         dialect="American", 
         is_offer=False, 
@@ -25,7 +17,7 @@ list_posts = [
     
     Post(
         #language_name="Spanish", 
-        language_name=languages[1], 
+        language_name=list_languages[1].lang_name, 
         level= 2, 
         dialect="Argentinian", 
         is_offer=False, 
@@ -37,7 +29,7 @@ list_posts = [
     
     Post(
         #language_name="Arabic", 
-        language_name=languages[3], 
+        language_name=list_languages[3].lang_name, 
         level= 3, 
         dialect="Moroccan", 
         is_offer=False, 
@@ -49,7 +41,7 @@ list_posts = [
 
     Post(
         #language_name="Hebrew", 
-        language_name=languages[5], 
+        language_name=list_languages[5].lang_name, 
         level= 2, 
         dialect="", 
         is_offer=False, 
@@ -61,7 +53,7 @@ list_posts = [
     
     Post(
         #language_name="English", 
-        language_name=languages[0], 
+        language_name=list_languages[0].lang_name, 
         level= 3, 
         dialect="", 
         is_offer=False, 
@@ -73,7 +65,7 @@ list_posts = [
     
     Post(
         #language_name="Mandarin", 
-        language_name=languages[4], 
+        language_name=list_languages[4].lang_name, 
         level= 1, 
         dialect="", 
         is_offer=False, 
@@ -86,7 +78,7 @@ list_posts = [
 # OFFERS
     Post(
         #language_name="Spanish", 
-        language_name=languages[1], 
+        language_name=list_languages[1].lang_name, 
         level= 3, 
         dialect="Spain", 
         is_offer=True, 
@@ -98,7 +90,7 @@ list_posts = [
         
     Post(
         #language_name="Mandarin", 
-        language_name=languages[4], 
+        language_name=list_languages[4].lang_name, 
         level= 3, 
         dialect="Standard", 
         is_offer=True, 
@@ -110,7 +102,7 @@ list_posts = [
 
     Post(
         #language_name="French", 
-        language_name=languages[2], 
+        language_name=list_languages[2].lang_name, 
         level= 3, 
         dialect="Louisiana French", 
         is_offer=True, 
@@ -122,7 +114,7 @@ list_posts = [
 
     Post(
         #language_name="Arabic", 
-        language_name=languages[3], 
+        language_name=list_languages[3].lang_name, 
         level= 3, 
         dialect="Moroccan", 
         is_offer=True, 
@@ -134,7 +126,7 @@ list_posts = [
 
     Post(
         #language_name="Hebrew", 
-        language_name=languages[5], 
+        language_name=list_languages[5].lang_name, 
         level= 3, 
         dialect="", 
         is_offer=True, 
@@ -146,7 +138,7 @@ list_posts = [
 
     Post(
         #language_name="English", 
-        language_name=languages[0], 
+        language_name=list_languages[0].lang_name, 
         level= 3, 
         dialect="uk", 
         is_offer=True, 
