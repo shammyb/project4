@@ -18,4 +18,8 @@ ma = Marshmallow(app)
 
 bcrypt = Bcrypt(app)
 
+from controllers import posts, users, language
 
+app.register_blueprint(posts.router, url_prefix="/api")
+app.register_blueprint(users.router, url_prefix="/api")
+app.register_blueprint(language.router, url_prefix="/api")
