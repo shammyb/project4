@@ -21,4 +21,5 @@ class Post(db.Model, BaseModel):
     language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
     post_comments = db.relationship('Comment', backref='post', cascade="all, delete")
 
-    post_languages = db.relationship('Language', backref='post3', secondary=post_language_join)
+    #languages = db.relationship('Language', backref='post', secondary=post_language_join)
+    

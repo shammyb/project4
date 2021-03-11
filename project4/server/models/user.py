@@ -29,7 +29,7 @@ class User(db.Model, BaseModel):
     languages_spoken = db.Column(db.Text, nullable=False)
     # languages_spoken = db.relationship('Language', backref='user', secondary=user_language_join)
     password_hash = db.Column(db.String(128), nullable=True)
-
+    #language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
   
     # user_comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
