@@ -15,7 +15,8 @@ from datetime import *
 
 
 from config.environment import secret
-
+from models.user_post import user_post_join
+from models.user_language import user_language_join
 class User(db.Model, BaseModel):
 
     __tablename__ = 'users'
@@ -54,16 +55,14 @@ class User(db.Model, BaseModel):
     
         return bcrypt.check_password_hash(self.password_hash, password_plaintext)
 
-   
     def generate_token(self):
 
-  
         payload = {
-       
+
             "sub": self.id,
-      
+
             "iat": datetime.utcnow(),
-     
+
             "exp": datetime.utcnow() + timedelta(days=1)
         }
 
