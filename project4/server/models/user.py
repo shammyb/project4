@@ -1,19 +1,19 @@
 
-# ! import my database
-# ! Import bcrypt
 from app import db, bcrypt
-# ! extend from base model
+
 from models.base import BaseModel
-# ! Import hybrid property from sqlalchemy
+# from models.user_post import user_post_join
+from models.user_language import user_language_join
+
 from sqlalchemy.ext.hybrid import hybrid_property
 
-# ! Import the pwjwt library.
+
 import jwt
 
-# ! Import everything from datetime module
+
 from datetime import *
 
-# ! import secret
+
 from config.environment import secret
 
 class User(db.Model, BaseModel):
@@ -25,15 +25,15 @@ class User(db.Model, BaseModel):
     bio = db.Column(db.Text, nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     time_zone = db.Column(db.String(7), nullable=False)
-    languages_spoken = db.Column(db.Text, nullable=False)
+    languages_spoken = db.relationship('Language', backref='user', secondary=user_language_join)
     password_hash = db.Column(db.String(128), nullable=True)
 
   
-    comments = db.relationship('Comment', backref='user', cascade="all, delete")
+    # user_comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
 
-    posts = db.relationship('Language', backref='post', secondary=user_post_join)
-    languages = db.relationship('Language', backref='post', secondary=user_language_join)
+    # posts = db.relationship('Post', backref='user', secondary=user_post_join)
+    # user_languages = db.relationship('Language', backref='user', secondary=user_language_join)
  
     @hybrid_property
     def password(self):
