@@ -3,7 +3,7 @@ from app import db, bcrypt
 
 from models.base import BaseModel
 # from models.user_post import user_post_join
-from models.user_language import user_language_join
+# from models.user_language import user_language_join
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -25,7 +25,8 @@ class User(db.Model, BaseModel):
     bio = db.Column(db.Text, nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     time_zone = db.Column(db.String(7), nullable=False)
-    languages_spoken = db.relationship('Language', backref='user', secondary=user_language_join)
+    languages_spoken = db.Column(db.Text, nullable=False)
+    # languages_spoken = db.relationship('Language', backref='user', secondary=user_language_join)
     password_hash = db.Column(db.String(128), nullable=True)
 
   
