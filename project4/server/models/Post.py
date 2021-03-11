@@ -1,6 +1,5 @@
 from app import db
 from models.base import BaseModel
-from models.user_post import user_post_join
 from models.user_language import user_language_join
 from models.language import Language
 from models.comment import Comment
@@ -19,4 +18,4 @@ class Post(db.Model, BaseModel):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', cascade="all, delete")
 
-    languages = db.relationship('Language', backref='language', secondary=user_language_join)
+    languages = db.relationship('Language', backref='user', secondary=user_language_join)

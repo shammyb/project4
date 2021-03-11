@@ -1,5 +1,5 @@
 from app import ma
-from models.Post import Post
+from models.post import Post
 
 # ! Import fields from marshmallow
 from marshmallow import fields
