@@ -20,10 +20,3 @@ ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 
 # ! Importing users now in my app.
-# from controllers import cakes, ingredients, users
-
-# app.register_blueprint(cakes.router, url_prefix="/api")
-
-# app.register_blueprint(ingredients.router, url_prefix="/api")
-
-# app.register_blueprint(users.router, url_prefix="/api")
