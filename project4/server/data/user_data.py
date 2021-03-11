@@ -1,5 +1,5 @@
 from models.user import User
-# from data.post_data import languages
+
 
 
 list_users = [
@@ -10,7 +10,7 @@ list_users = [
         bio='I\'m Katherine and I\'m from Alabama. I\'d like to learn Arabic in exchange for English!',
         first_name="Katherine",
         time_zone="CET",
-        languages_spoken="Spanish, Mandarin"
+        languages_spoken= "spanish, mandarin"
         # languages_spoken = [languages[4].lang_name, languages[1].lang_name],
         ),
 

@@ -8,7 +8,7 @@ from models.comment import Comment
 
 class Post(db.Model, BaseModel):
 
-    __tablename__ = "post"
+    __tablename__ = "posts"
 
     language_name = db.Column(db.Text, nullable=True)
     level = db.Column(db.Integer, nullable=False)
@@ -19,6 +19,7 @@ class Post(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
-    post_comments = db.relationship('Comment', backref='post', cascade="all, delete")
+    post_comments = db.relationship('Comment', backref='posts', cascade="all, delete")
 
-    post_languages = db.relationship('Language', backref='post3', secondary=post_language_join)
+    languages = db.relationship('Language', backref='posts', secondary=post_language_join)
+    # user = db.relationship('User', backref = 'posts', secondary = user_post_join )
