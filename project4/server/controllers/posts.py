@@ -59,6 +59,9 @@ def update_post(post_id):
     existing_post = Post.query.get(post_id)
     post_dictionary = request.json
 
+    if existing_post.user != g.current_user:
+        return {'errors': 'Post can only be updated by the creator!'}, 402
+
     try:
         post = post_schema.load(
             post_dictionary,
@@ -93,18 +96,24 @@ def remove_post(post_id):
 #     return "The cake is a lie, but everything is up and running.", 200
 
 # COMMENTS 
+# @router.route("/posts/<int:post_id>/comments", methods=["GET"])
+# def get_all_comments(post_id):
+#     comments = 
 
+#     return comment_schema.jsonify(comment)
 # # ! POSTing a comment
 @router.route("/posts/<int:post_id>/comments", methods=["POST"])
 def create_comment(post_id):
     comment_dictionary = request.json
 
     post = Post.query.get(post_id)
+    
 
     try:
         comment = comment_schema.load(comment_dictionary)
 
         comment.post = post
+        post.user = g.current_user
 
     except ValidationError as e:
         return {"errors": e.messages, "messages": "Something went wrong"}
@@ -115,11 +124,14 @@ def create_comment(post_id):
 
 # # ! UPDATING a comment
 @router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
+@secure_route
 def update_comment(post_id, comment_id):
 
     comment_dictionary = request.json
     existing_comment = Comment.query.get(comment_id)
 
+    if existing_comment.user != g.current_user:
+        return {'errors': 'Comment can only be updated by the creator!'}, 402
     try:
         comment = comment_schema.load(
             comment_dictionary, instance=existing_comment, partial=True
@@ -139,10 +151,12 @@ def update_comment(post_id, comment_id):
 # # ! DELETE a comment
 
 @router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["DELETE"])
+@secure_route
 def remove_comment(post_id, comment_id):
 
     comment = Comment.query.get(comment_id)
-
+    if comment.user != g.current_user:
+        return {'errors': 'Comment can only be deleted by the creator!'}, 402
     comment.remove()
 
     post = Post.query.get(post_id)
