@@ -147,38 +147,3 @@ def remove_comment(post_id, comment_id):
     post = Post.query.get(post_id)
 
     return post_schema.jsonify(post), 202
-
-
-
-# # ! DELETING A CAKE'S INGREDIENT
-# @router.route("/cakes/<int:cake_id>/ingredients/<int:ingredient_id>", methods=["DELETE"])
-# def remove_cake_ingredient(cake_id, ingredient_id):
-
-#     # ! Getting the cake
-#     cake = Cake.query.get(cake_id)
-
-#     # ! Get that ingredient
-#     ingredient = Ingredient.query.get(ingredient_id)
-
-#     # ! Remove ingredient
-#     cake.ingredients.remove(ingredient)
-
-#     # ! Save the cake back.
-#     cake.save()
-
-#     return cake_schema.jsonify(cake), 200
-
-# # ! POST AN INGREDIENT TO A CAKE
-# @router.route("/cakes/<int:cake_id>/ingredients/<int:ingredient_id>", methods=["POST"])
-# def add_cake_ingredient(cake_id, ingredient_id):
-#     # ! This method ASSUMES the ingredient and the cake exists already.
-
-#     cake = Cake.query.get(cake_id)
-
-#     ingredient = Ingredient.query.get(ingredient_id)
-
-#     cake.ingredients.append(ingredient)
-
-#     cake.save()
-
-#     return cake_schema.jsonify(cake), 200
