@@ -13,7 +13,7 @@ post_schema = PostSchema()
 from marshmallow.exceptions import ValidationError
 
 # ! Initialise comment schema.
-#comment_schema = CommentSchema()
+comment_schema = CommentSchema()
 
 router = Blueprint(__name__, "posts")
 
@@ -91,58 +91,63 @@ def remove_post(post_id):
 # def test():
 #     return "The cake is a lie, but everything is up and running.", 200
 
+# COMMENTS 
 
 # # ! POSTing a comment
-# @router.route("/cakes/<int:cake_id>/comments", methods=["POST"])
-# def create_comment(cake_id):
-#     comment_dictionary = request.json
+@router.route("/posts/<int:post_id>/comments", methods=["POST"])
+def create_comment(post_id):
+    comment_dictionary = request.json
 
-#     cake = Cake.query.get(cake_id)
+    post = Post.query.get(post_id)
 
-#     try:
-#         comment = comment_schema.load(comment_dictionary)
+    try:
+        comment = comment_schema.load(comment_dictionary)
 
-#         comment.cake = cake
+        comment.post = post
 
-#     except ValidationError as e:
-#         return {"errors": e.messages, "messages": "Something went wrong"}
+    except ValidationError as e:
+        return {"errors": e.messages, "messages": "Something went wrong"}
 
-#     comment.save()
+    comment.save()
 
-#     return comment_schema.jsonify(comment)
+    return comment_schema.jsonify(comment)
+
+# # ! UPDATING a comment
+@router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
+def update_comment(post_id, comment_id):
+
+    comment_dictionary = request.json
+    existing_comment = Comment.query.get(comment_id)
+
+    try:
+        comment = comment_schema.load(
+            comment_dictionary, instance=existing_comment, partial=True
+        )
+
+    except ValidationError as e:
+        return {"errors": e.messages, "messages": "Something went wrong"}
+
+    comment.save()
+
+    post = Post.query.get(post_id)
+
+    return post_schema.jsonify(post), 201
 
 
-# @router.route("/cakes/<int:cake_id>/comments/<int:comment_id>", methods=["DELETE"])
-# def remove_comment(cake_id, comment_id):
 
-#     comment = Comment.query.get(comment_id)
+# # ! DELETE a comment
 
-#     comment.remove()
+@router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["DELETE"])
+def remove_comment(post_id, comment_id):
 
-#     cake = Cake.query.get(cake_id)
+    comment = Comment.query.get(comment_id)
 
-#     return cake_schema.jsonify(cake), 202
+    comment.remove()
 
+    post = Post.query.get(post_id)
 
-# @router.route("/cakes/<int:cake_id>/comments/<int:comment_id>", methods=["PUT"])
-# def update_comment(cake_id, comment_id):
+    return post_schema.jsonify(post), 202
 
-#     comment_dictionary = request.json
-#     existing_comment = Comment.query.get(comment_id)
-
-#     try:
-#         comment = comment_schema.load(
-#             comment_dictionary, instance=existing_comment, partial=True
-#         )
-
-#     except ValidationError as e:
-#         return {"errors": e.messages, "messages": "Something went wrong"}
-
-#     comment.save()
-
-#     cake = Cake.query.get(cake_id)
-
-#     return cake_schema.jsonify(cake), 201
 
 
 # # ! DELETING A CAKE'S INGREDIENT
