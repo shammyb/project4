@@ -52,8 +52,8 @@ def create_post():
 
     return post_schema.jsonify(post), 200
 
-# needs secure route
 @router.route("/posts/<int:post_id>", methods=["PUT"])
+@secure_route
 def update_post(post_id):
     existing_post = Post.query.get(post_id)
     post_dictionary = request.json
