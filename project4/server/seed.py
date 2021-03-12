@@ -1,4 +1,5 @@
 from app import app, db
+from data.language_data import list_languages
 from data.post_data import list_posts
 from data.comment_data import list_comments
 from data.user_data import list_users
@@ -12,7 +13,9 @@ with app.app_context():
         db.drop_all()
 
         db.create_all()
-        
+        db.session.add_all(list_languages)
+
+        db.session.commit()
         db.session.add_all(list_users)
 
         db.session.commit()

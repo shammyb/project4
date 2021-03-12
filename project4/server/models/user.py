@@ -2,7 +2,7 @@
 from app import db, bcrypt
 
 from models.base import BaseModel
-from models.user_post import user_post_join
+#from models.user_post import user_post_join
 
 
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -15,7 +15,7 @@ from datetime import *
 
 
 from config.environment import secret
-from models.user_post import user_post_join
+
 class User(db.Model, BaseModel):
 
     __tablename__ = 'users'
@@ -27,6 +27,7 @@ class User(db.Model, BaseModel):
     time_zone = db.Column(db.String(7), nullable=False)
     languages_spoken = db.Column(db.Text, nullable=False)
     password_hash = db.Column(db.String(128), nullable=True)
+    posts = db.relationship('Post', backref='user', cascade="all, delete")
 
  
     @hybrid_property
