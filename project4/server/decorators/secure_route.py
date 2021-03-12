@@ -28,7 +28,7 @@ def secure_route(func):
                 return {'Message': 'Unauthorized'}, 401
 
         
-            g.current_user.id = user.id
+            g.current_user = user
 
         except jwt.ExpiredSignatureError:
             return {'Message': 'Token is expired'}, 401

@@ -57,6 +57,8 @@ def create_post():
 def update_post(post_id):
     existing_post = Post.query.get(post_id)
     post_dictionary = request.json
+    if existing_post.user != g.current_user:
+        return {'errors': 'Post can only be deleted by the creator!'}, 402
 
     try:
         post = post_schema.load(
