@@ -2,7 +2,6 @@
 from app import db, bcrypt
 
 from models.base import BaseModel
-from models.user_post import user_post_join
 
 
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -15,7 +14,7 @@ from datetime import *
 
 
 from config.environment import secret
-from models.user_post import user_post_join
+
 class User(db.Model, BaseModel):
 
     __tablename__ = 'users'
