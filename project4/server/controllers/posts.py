@@ -5,7 +5,7 @@ from models.comment import Comment
 from serializers.post import PostSchema
 
 from decorators.secure_route import secure_route
-from models.user_post import user_post_join
+# from models.user_post import user_post_join
 
 # ! Import my comment schema
 from serializers.comment import CommentSchema
@@ -22,7 +22,6 @@ router = Blueprint(__name__, "posts")
 @router.route("/posts", methods=["GET"])
 def get_posts():
     posts = Post.query.all()
-    print(user_post_join.user_id)
     return post_schema.jsonify(posts, many=True), 200
 
 
