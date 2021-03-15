@@ -33,7 +33,10 @@ function Search() {
     </div>
     <h1 className='title brandfont is-size-2 mt-4 ml-4'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-4'>
+      <select className='dropdown is-hoverable is-centered mr-4' onChange={(event) => {
+        
+        setApiUrl(`/api/posts/language/${event.target.value}`)
+      }}>
         <option value='1'>English</option>
         <option value='2'>Spanish</option>
         <option value='3'>French</option>
