@@ -28,6 +28,7 @@ class User(db.Model, BaseModel):
     languages_spoken = db.Column(db.Text, nullable=False)
     password_hash = db.Column(db.String(128), nullable=True)
     posts = db.relationship('Post', backref='user', cascade="all, delete")
+    comments = db.relationship('Comment', backref='user', cascade="all, delete")
 
  
     @hybrid_property

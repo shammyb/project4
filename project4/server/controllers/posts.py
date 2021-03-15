@@ -18,6 +18,16 @@ comment_schema = CommentSchema()
 
 router = Blueprint(__name__, "posts")
 
+@router.route("/posts/language/<int:query_language_id>", methods=["GET"])
+def get_posts_by_language(query_language_id):
+    post = Post.query.all()
+    lang_post = []
+    for x in post:
+        if x.language_id == query_language_id:
+            print(x.language_id)
+            lang_post.append(x)
+            print(lang_post)    
+    return post_schema.jsonify(lang_post, many=True), 200
 
 @router.route("/posts", methods=["GET"])
 def get_posts():
@@ -57,6 +67,8 @@ def create_post():
 def update_post(post_id):
     existing_post = Post.query.get(post_id)
     post_dictionary = request.json
+    if existing_post.user != g.current_user:
+        return {'errors': 'Post can only be deleted by the creator!'}, 402
 
     if existing_post.user != g.current_user:
         return {'errors': 'Post can only be updated by the creator!'}, 402
@@ -95,19 +107,32 @@ def remove_post(post_id):
 # def get_all_comments(post_id):
 #     comments = 
 
-#     return comment_schema.jsonify(comment)
+@router.route("/posts/<int:post_id>/comments", methods=["GET"])
+def get_comments(post_id):
+        comments = Comment.query.all()
+
+        return comment_schema.jsonify(comments, many=True), 200
+    # try:
+    #     comment = comment_schema.load()
+    #     print(comment)
+    # except ValidationError as e:
+    #      return { 'errors': e.messages, 'messages': 'Something went wrong' }
+
 # # ! POSTing a comment
 @router.route("/posts/<int:post_id>/comments", methods=["POST"])
+@secure_route
 def create_comment(post_id):
     comment_dictionary = request.json
 
     post = Post.query.get(post_id)
-    
+    user = g.current_user
 
+    print(user)
+    print(type(user))
     try:
         comment = comment_schema.load(comment_dictionary)
         comment.post = post
-        
+        comment.user = user
 
     except ValidationError as e:
         return {"errors": e.messages, "messages": "Something went wrong"}

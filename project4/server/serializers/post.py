@@ -10,7 +10,7 @@ class PostSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     user = fields.Nested('UserSchema')
-    comments = fields.Nested("CommentSchema", many=True)
+    post_comments = fields.Nested("CommentSchema", many=True)
     language_id = fields.Integer()
 
 
