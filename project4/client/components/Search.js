@@ -28,15 +28,17 @@ function Search() {
     </>
   }
 
-  return <div className='homepage'> 
-    <h1 className='title'>Posts</h1>
-    <div className='trendingdiv'>
+  return <div className='block mb-4'> 
+  
+    <h1 className='title brandfont is-size-2 mt-4 ml-4'>Posts</h1>
+    <div className='container'>
       {posts.map((post) => {
-        return <Link key={post.id} to={`/posts/${post.id}`}>
-          <div className='trendingcard'>
-            <h2>{post.title}</h2>
+        return <Link key={post.id} to={`/post/${post.id}`}>
+          <div className="card rows mt-4 p-3">
+            
+            <h2 className='title is-size-3 brandfont'>{post.title}</h2>
             <h4>Level: {post.level}</h4>
-            <h4>Dialect: {post.dialect}</h4>
+            
           </div>
         </Link>
       })

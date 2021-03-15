@@ -1,31 +1,46 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 // Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$olive-green: #456727;
+$light-olive: #63922A;
+$apple-green: #94B70A;
+$gold: #CA910D;
+$taupe: #B98B6E;
 
 // Update Bulma's global variables
-$family-sans-serif: "Nunito", sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
+$family-sans-serif: "Montserrat", sans-serif;
+$grey-dark: $apple-green;
+$grey-light: $light-olive;
+$primary: $olive-green;
+$link: $gold;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
+
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
+$body-background-color: $taupe;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+.brandfont {
+  font-family: "Montserrat", "arial", sans-serif;
+}
 nav,
 footer {
-  background: linear-gradient(to right, rgba(20, 70, 90, 1), rgba(10, 60, 70, 1));
+  background: linear-gradient(to right, rgba(71, 104, 41, 1), rgba(88, 144, 42, 1));
+}
+
+.home {
+  background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
+    url("https://images.pexels.com/photos/269633/pexels-photo-269633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-gap: 0.5em;
 }
