@@ -17,6 +17,24 @@ comment_schema = CommentSchema()
 
 router = Blueprint(__name__, "posts")
 
+@router.route("/posts/language/<int:query_language_id>", methods=["GET"])
+def get_posts_by_language(query_language_id):
+    post = Post.query.all()
+
+
+
+
+
+    lang_post = []
+    for x in post:
+        if x.language_id == query_language_id:
+            print(x.language_id)
+            lang_post.append(x)
+            print(lang_post)
+
+            
+    
+    return post_schema.jsonify(lang_post, many=True), 200
 
 @router.route("/posts", methods=["GET"])
 def get_posts():
@@ -95,17 +113,34 @@ def remove_post(post_id):
 
 # COMMENTS 
 
+@router.route("/posts/<int:post_id>/comments", methods=["GET"])
+def get_comments(post_id):
+        comments = Comment.query.all()
+
+        return comment_schema.jsonify(comments, many=True), 200
+    # try:
+    #     comment = comment_schema.load()
+    #     print(comment)
+    # except ValidationError as e:
+    #      return { 'errors': e.messages, 'messages': 'Something went wrong' }
+
 # # ! POSTing a comment
 @router.route("/posts/<int:post_id>/comments", methods=["POST"])
+@secure_route
 def create_comment(post_id):
     comment_dictionary = request.json
 
     post = Post.query.get(post_id)
+    user = g.current_user
 
+    print(user)
+    print(type(user))
     try:
         comment = comment_schema.load(comment_dictionary)
 
         comment.post = post
+        comment.user = user
+        print(comment.user)
 
     except ValidationError as e:
         return {"errors": e.messages, "messages": "Something went wrong"}
