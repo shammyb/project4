@@ -5,6 +5,7 @@ from models.comment import Comment
 from serializers.post import PostSchema
 
 from decorators.secure_route import secure_route
+# from models.user_post import user_post_join
 
 # ! Import my comment schema
 from serializers.comment import CommentSchema
@@ -20,33 +21,24 @@ router = Blueprint(__name__, "posts")
 @router.route("/posts/language/<int:query_language_id>", methods=["GET"])
 def get_posts_by_language(query_language_id):
     post = Post.query.all()
-
-
-
-
-
     lang_post = []
     for x in post:
         if x.language_id == query_language_id:
             print(x.language_id)
             lang_post.append(x)
-            print(lang_post)
-
-            
-    
+            print(lang_post)    
     return post_schema.jsonify(lang_post, many=True), 200
 
 @router.route("/posts", methods=["GET"])
 def get_posts():
     posts = Post.query.all()
-
     return post_schema.jsonify(posts, many=True), 200
 
 
 @router.route("/posts/<int:post_id>", methods=["GET"])
 def get_single_post(post_id):
     post = Post.query.get(post_id)
-
+    
     if not post:
         return {"message": "Post not found"}, 404
 
@@ -78,6 +70,9 @@ def update_post(post_id):
     if existing_post.user != g.current_user:
         return {'errors': 'Post can only be deleted by the creator!'}, 402
 
+    if existing_post.user != g.current_user:
+        return {'errors': 'Post can only be updated by the creator!'}, 402
+
     try:
         post = post_schema.load(
             post_dictionary,
@@ -107,11 +102,10 @@ def remove_post(post_id):
     return {"message": "Post deleted successfully"}, 200 
 
 
-# @router.route("/ping", methods=["GET"])
-# def test():
-#     return "The cake is a lie, but everything is up and running.", 200
-
 # COMMENTS 
+# @router.route("/posts/<int:post_id>/comments", methods=["GET"])
+# def get_all_comments(post_id):
+#     comments = 
 
 @router.route("/posts/<int:post_id>/comments", methods=["GET"])
 def get_comments(post_id):
@@ -137,10 +131,8 @@ def create_comment(post_id):
     print(type(user))
     try:
         comment = comment_schema.load(comment_dictionary)
-
         comment.post = post
         comment.user = user
-        print(comment.user)
 
     except ValidationError as e:
         return {"errors": e.messages, "messages": "Something went wrong"}
@@ -151,11 +143,14 @@ def create_comment(post_id):
 
 # # ! UPDATING a comment
 @router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
+@secure_route
 def update_comment(post_id, comment_id):
 
     comment_dictionary = request.json
     existing_comment = Comment.query.get(comment_id)
 
+    if existing_comment.user != g.current_user:
+        return {'errors': 'Comment can only be updated by the creator!'}, 402
     try:
         comment = comment_schema.load(
             comment_dictionary, instance=existing_comment, partial=True
@@ -175,10 +170,12 @@ def update_comment(post_id, comment_id):
 # # ! DELETE a comment
 
 @router.route("/posts/<int:post_id>/comments/<int:comment_id>", methods=["DELETE"])
+@secure_route
 def remove_comment(post_id, comment_id):
 
     comment = Comment.query.get(comment_id)
-
+    if comment.user != g.current_user:
+        return {'errors': 'Comment can only be deleted by the creator!'}, 402
     comment.remove()
 
     post = Post.query.get(post_id)
