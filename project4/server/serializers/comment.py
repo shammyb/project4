@@ -5,4 +5,3 @@ class CommentSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Comment
         load_instance = True
-    

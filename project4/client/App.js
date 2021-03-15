@@ -3,8 +3,10 @@
 // * Nail down color palette
 // * Nail down styling framework
 // * Double check all controllers work 
+// * Booking via mailto links
 // * User ratings 
-// * Pagination 
+// * Pagination
+// * cloudinary (or one image for each language) 
 
 // ! STRETCH GOALS
 // * Dark/light mode
@@ -20,8 +22,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './styles/style.scss'
-
+import 'bulma'
 // COMPONENT IMPORTS
+import NavBar from './components/NavBar.js'
 import About from './components/About.js'
 import Class from './components/Class.js'
 import Form from './components/Form.js'
@@ -32,9 +35,11 @@ import PrivateProfile from './components/PrivateProfile.js'
 import Register from './components/Register.js'
 import Search from './components/Search.js'
 import UserProfile from './components/UserProfile.js'
+import Footer from './components/Footer.js'
 
 const App = () => (
   <BrowserRouter>
+    <NavBar></NavBar>
     <Switch>
       <Route exact path="/" component={Home} />
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
@@ -48,6 +53,7 @@ const App = () => (
       <Route exact path="/search" component={Search} />
       <Route exact path="/userprofile" component={UserProfile} />
     </Switch>
+    <Footer />
   </BrowserRouter>
 )
 

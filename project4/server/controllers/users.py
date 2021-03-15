@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from models.user import User
 from serializers.user import UserSchema
 from marshmallow.exceptions import ValidationError
-
+from decorators.secure_route import secure_route
 user_schema = UserSchema()
 
 router = Blueprint(__name__, "users")
@@ -39,8 +39,45 @@ def login():
     return { 'token': token, 'message': 'Welcome back!' }
 
 
-# @router.route('/profile', methods=['GET'])
-# @secure_route
-# def get_user_profile():
-#     return user_schema.jsonify(g.current_user)
+@router.route('/profile/<int:user_id>', methods=['GET'])
+def get_user_profile(user_id):
+    user = User.query.get(user_id)
+    
+    if not user:
+        return {"message": "User not found"}, 404
+    return user_schema.jsonify(user), 200
+
+@router.route('/profile/<int:user_id>', methods=["PUT"])
+@secure_route
+def update_user(user_id):
+    existing_user = User.query.get(user_id)
+    user_update = request.json
+
+    try:
+        user = user_schema.load(
+            user_update,
+            instance=existing_user,
+            partial=True,
+        )
+
+    except ValidationError as e:
+        return {"errors": e.messages, "messages": "Something went wrong"}
+
+    user.save()
+
+    return user_schema.jsonify(user), 201
+
+
+@router.route('/profile/<int:user_id>', methods=["DELETE"])
+@secure_route
+def remove_user(user_id):
+    user_to_delete = User.query.get(user_id)
+
+    # ! Adding a permission to make sure you can only delete your own cake!
+    if user_to_delete.user != g.current_user:
+        return {'errors': 'User can only be deleted by the creator!'}, 402
+
+    user_to_delete.remove()
+
+    return {"message": "User deleted successfully"}, 200 
 

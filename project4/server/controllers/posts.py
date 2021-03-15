@@ -90,10 +90,6 @@ def remove_post(post_id):
     return {"message": "Post deleted successfully"}, 200 
 
 
-# @router.route("/ping", methods=["GET"])
-# def test():
-#     return "The cake is a lie, but everything is up and running.", 200
-
 # COMMENTS 
 # @router.route("/posts/<int:post_id>/comments", methods=["GET"])
 # def get_all_comments(post_id):
@@ -110,9 +106,8 @@ def create_comment(post_id):
 
     try:
         comment = comment_schema.load(comment_dictionary)
-
         comment.post = post
-        post.user = g.current_user
+        
 
     except ValidationError as e:
         return {"errors": e.messages, "messages": "Something went wrong"}
