@@ -1,34 +1,37 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+
 import { Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
-import { getLoggedInUserId } from '../lib/auth.js'
+// import axios from 'axios'
+// import { getLoggedInUserId } from '../lib/auth.js'
 
 
-function NavBar({ location }) {
+// function NavBar({ location }) {
+function NavBar() {
 
   const [username, updateUsername] = useState('')
-  let LoggedInUserId = getLoggedInUserId()
+  // let LoggedInUserId = getLoggedInUserId()
 
-  const token = localStorage.getItem('token')
+  // const token = localStorage.getItem('token')
 
-  useEffect(() => {
-    async function fetchData() {
-      LoggedInUserId = getLoggedInUserId()
-      if (LoggedInUserId) {
-        try {
-          const { data } = await axios.get(`/api/users/${LoggedInUserId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-          if (data) {
-            updateUsername(data.first_name)
-          }
-        } catch (err) {
-          console.log(err)
-        }
-      }
-    }
-    fetchData()
-  }, [location])
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     LoggedInUserId = getLoggedInUserId()
+  //     if (LoggedInUserId) {
+  //       try {
+  //         const { data } = await axios.get(`/api/users/${LoggedInUserId}`, {
+  //           headers: { Authorization: `Bearer ${token}` }
+  //         })
+  //         if (data) {
+  //           updateUsername(data.first_name)
+  //         }
+  //       } catch (err) {
+  //         console.log(err)
+  //       }
+  //     }
+  //   }
+  //   fetchData()
+  // }, [location])
 
 
   function logOut() {

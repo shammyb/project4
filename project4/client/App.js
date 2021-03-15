@@ -31,7 +31,7 @@ import Form from './components/Form.js'
 import Home from './components/Home.js'
 import Login from './components/Login.js'
 import PrivateProfile from './components/PrivateProfile.js'
-import Register from './components/Register.js'
+import SignUp from './components/SignUp.js'
 import Search from './components/Search.js'
 import UserProfile from './components/UserProfile.js'
 import Footer from './components/Footer.js'
@@ -47,7 +47,7 @@ const App = () => (
       <Route exact path="/form" component={Form} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/privateprofile" component={PrivateProfile} />
-      <Route exact path="/register" component={Register} />
+      <Route exact path="/signup" component={SignUp} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/userprofile" component={UserProfile} />
     </Switch>
