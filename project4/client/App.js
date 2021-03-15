@@ -27,11 +27,11 @@ import 'bulma'
 import NavBar from './components/NavBar.js'
 import About from './components/About.js'
 import Post from './components/Post.js'
-import Form from './components/Form.js'
+import NewForm from './components/Form.js'
 import Home from './components/Home.js'
 import Login from './components/Login.js'
 import PrivateProfile from './components/PrivateProfile.js'
-import Register from './components/Register.js'
+import SignUp from './components/SignUp.js'
 import Search from './components/Search.js'
 import UserProfile from './components/UserProfile.js'
 import Footer from './components/Footer.js'
@@ -44,10 +44,10 @@ const App = () => (
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
       <Route exact path="/about" component={About} />
       <Route exact path="/post/:post_id" component={Post} />
-      <Route exact path="/form" component={Form} />
+      <Route exact path="/form" component={NewForm} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/privateprofile" component={PrivateProfile} />
-      <Route exact path="/register" component={Register} />
+      <Route exact path="/signup" component={SignUp} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/userprofile" component={UserProfile} />
     </Switch>
