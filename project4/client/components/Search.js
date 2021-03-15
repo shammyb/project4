@@ -10,7 +10,7 @@ function Search() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const { data } = await axios.get('api/posts')
+        const { data } = await axios.get('/api/posts')
         updatePosts(data)
         updateLoading(false)
       } catch (err) {
@@ -23,7 +23,7 @@ function Search() {
 
   if (loading){
     return <>
-      <img src='https://i.imgur.com/jKTJEFh.png'/>
+
       <h1>Loading posts...</h1>
     </>
   }
