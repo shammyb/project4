@@ -19,7 +19,7 @@ class Post(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
-    post_comments = db.relationship('Comment', backref='posts', cascade="all, delete")
+    post_comments = db.relationship('Comment', backref='post', cascade="all, delete")
 
     languages = db.relationship('Language', backref='posts', secondary=post_language_join)
     #user_id = db.relationship('User', backref = 'posts', secondary = user_post_join )
