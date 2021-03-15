@@ -8,7 +8,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         model = User
         load_instance = True
         exclude = ('password_hash',)
-        load_only = ('email', 'password')
+        load_only = ('password')
 
     password = fields.String(required=True)
     post = fields.Nested('SimplePostSchema',many=True)

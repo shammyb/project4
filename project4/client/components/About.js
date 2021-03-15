@@ -28,6 +28,7 @@ function About() {
               <li>React</li>
               <li>PostgreSQL</li>
               <li>Bulma</li>
+              <li>Formik</li>
             </ul>
           </div>
         </div>
