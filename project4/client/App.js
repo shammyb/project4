@@ -26,11 +26,10 @@ import 'bulma'
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.js'
 import About from './components/About.js'
-import Class from './components/Class.js'
+import Post from './components/Post.js'
 import Form from './components/Form.js'
 import Home from './components/Home.js'
 import Login from './components/Login.js'
-import Offer from './components/Offer.js'
 import PrivateProfile from './components/PrivateProfile.js'
 import Register from './components/Register.js'
 import Search from './components/Search.js'
@@ -44,10 +43,9 @@ const App = () => (
       <Route exact path="/" component={Home} />
       {/* <Route exact path="/test/backend" component={TestBackend} /> */}
       <Route exact path="/about" component={About} />
-      <Route exact path="/class" component={Class} />
+      <Route exact path="/posts" component={Post} />
       <Route exact path="/form" component={Form} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/offer" component={Offer} />
       <Route exact path="/privateprofile" component={PrivateProfile} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/search" component={Search} />

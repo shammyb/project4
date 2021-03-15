@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 
 function Home() {
 
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
 
   return <section className='hero home is-fullheight-with-navbar columns'>
     <div className='hero-body column is-centered'>

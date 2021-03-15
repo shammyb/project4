@@ -2,7 +2,7 @@ import React from 'react'
 // import React, { useState } from 'react'
 // import axios from 'axios'
 
-function Class() {
+function Post() {
  
   return <div>
     <h1>CLASSES PAGE</h1>
@@ -11,4 +11,4 @@ function Class() {
 
 }
 
-export default Class
+export default Post
