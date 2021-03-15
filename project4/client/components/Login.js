@@ -47,6 +47,7 @@ function Login({ history }) {
 
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2))
+            console.log(data.token)
             setSubmitting(false)
           }, 400)
         }}
