@@ -55,10 +55,6 @@ function Post({ match }) {
           <div>
             <h3>Comments to insert</h3>
           </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 4e08abcaf6a736498812731aec4bd5906daaf242
         </div>
       </div>
     </div>
