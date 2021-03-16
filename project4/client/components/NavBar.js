@@ -61,7 +61,7 @@ function Navbar({ history }) {
             <Link className="button is-light" to={'/signup'}>
               <strong>Sign up</strong>
             </Link>}
-          {loggedInUser._id &&
+          {loggedInUser.id &&
             <button className="button is-warning" onClick={logout}>Sign Out</button>}
         </div>
       </div>

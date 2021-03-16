@@ -6,34 +6,39 @@ import { Link } from 'react-router-dom'
 
 function Post({ match }) {
   const token = localStorage.getItem('token')
-  const [comment, setComment] = useState('')
+  const [content, setComment] = useState('')
   const id = match.params.post_id
   const [post, updatePost] = useState([])
   const [loading, updateLoading] = useState(true)
   const loggedIn = getLoggedInUserId()
 
   //const [error, updateError] = useState(false)
-  console.log(match)
+
+
+  async function fetchData() {
+    await axios.get(`/api/posts/${id}`)
+      .then(({ data }) => {
+        updatePost(data)
+        updateLoading(false)
+      })
+
+  }
+
   useEffect(() => {
 
-    async function fetchData() {
-      await axios.get(`/api/posts/${id}`)
-        .then(({ data }) => {
-          updatePost(data)
-          updateLoading(false)
-        })
-
-    }
     fetchData()
   }, [])
 
   async function handleComment() {
-    const { data } = await axios.post(`/api/posts/${id}/comments`, { comment }, {
+
+    await axios.post(`/api/posts/${id}/comments`, { content }, {
       headers: { Authorization: `Bearer ${token}` }
     })
 
     setComment('')
-    updatePost(data)
+    fetchData()
+
+
 
   }
   async function handleDeleteComment(commentId) {
@@ -77,7 +82,7 @@ function Post({ match }) {
             <p className='brandfont has-text-info'>{post.user.bio}</p>
             <p className='brandfont has-text-info'>Speaks: {post.user.languages_spoken}</p>
             <p className='brandfont has-text-info'>Timezone: {post.user.time_zone}</p>
-            
+
           </div>
           {isCreator(post.user.id) ?
             <Link className='button is-primary mb-4' to={`/updatepost/${post.id}`}>Edit post</Link>
@@ -85,16 +90,15 @@ function Post({ match }) {
             <a className='button is-secondary mb-4' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
           }
           <div>
-            {console.log('bbb' + JSON.stringify(post.post_comments))}
-            {console.log('bbb' + JSON.stringify(post))}
+
             <div>
               <div className="container is-centered">
                 <h2 className="title is-2">Share you experiences from {post.user.username} </h2>
                 <div className="column">
                   <div className="columns is-multiline is-centered">
                     {
-                      post.post_comments && post.post_comments.map(commenting => {
-                        return <article key={id} className="media">
+                      post.post_comments && post.post_comments.map((commenting, index) => {
+                        return <article key={index} className="media">
                           <div className="media-content">
                             <div className="content">
                               <p className="subtitle">
@@ -106,7 +110,7 @@ function Post({ match }) {
                           {isCreator(commenting.user.id) && <div className="media-right">
                             <button
                               className="button is-danger"
-                              onClick={() => handleDeleteComment(commenting._id)}>
+                              onClick={() => handleDeleteComment(commenting.id)}>
                               Delete
                             </button>
                           </div>}
@@ -127,11 +131,11 @@ function Post({ match }) {
                           <p className="control">
                             <textarea
                               className="textarea"
-                              placeholder="Share your experience..."
+                              placeholder="make a comment"
                               onChange={event => setComment(event.target.value)}
-                              value={comment}
+                              value={content}
                             >
-                              {comment}
+                              {content}
                             </textarea>
                           </p>
                         </div>
