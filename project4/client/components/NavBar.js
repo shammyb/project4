@@ -11,7 +11,7 @@ function Navbar({ history }) {
   setTimeout(() => {
 
     const userId = getLoggedInUserId()
-
+    
     async function getLoggedInUser() {
       const { data } = await axios.get(`/api/profile/${userId}`)
       updateLoggedInUser(data)

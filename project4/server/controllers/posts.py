@@ -107,11 +107,11 @@ def remove_post(post_id):
 # def get_all_comments(post_id):
 #     comments = 
 
-@router.route("/posts/<int:post_id>/comments", methods=["GET"])
-def get_comments(post_id):
-        comments = Comment.query.all()
+# @router.route("/posts/<int:post_id>/comments", methods=["GET"])
+# def get_comments(post_id):
+#         comments = Comment.query.all()
 
-        return comment_schema.jsonify(comments, many=True), 200
+#         return comment_schema.jsonify(comments, many=True), 200
     # try:
     #     comment = comment_schema.load()
     #     print(comment)
