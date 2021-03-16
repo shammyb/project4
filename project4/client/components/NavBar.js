@@ -43,14 +43,10 @@ function Navbar({ history }) {
         </div>
       }
       {loggedInUser.id &&
-        <div className="navbar-item">
-          <div className="navbar-item is-hoverable">
-            
-            <p className="navbar-item is-hoverable"><Link className="navbar-item" to={`/profile/${loggedInUser._id}`}>Hello {loggedInUser.first_name}</Link></p>
-            
-
-          </div>
-        </div>}
+        <div className='navbar-item has-text-secondary'>
+          <p className="navbar-item"><Link className="has-link-black is-link" to={`/profile/${loggedInUser._id}`}>Hello {loggedInUser.first_name}</Link></p>
+        </div>
+      }
       <div className="navbar-item">
         <div className="buttons">
           {loggedInUser.length === 0 &&
