@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth.js'
+=======
+import { isCreator } from '../lib/auth'
+import { getLoggedInUserId } from '../lib/auth'
+import { Link } from 'react-router-dom'
+
+>>>>>>> 4e08abcaf6a736498812731aec4bd5906daaf242
 function Post({ match }) {
   const id = match.params.post_id
   const [post, updatePost] = useState([])
@@ -48,6 +55,10 @@ function Post({ match }) {
           <div>
             <h3>Comments to insert</h3>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e08abcaf6a736498812731aec4bd5906daaf242
         </div>
       </div>
     </div>

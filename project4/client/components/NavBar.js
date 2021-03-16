@@ -14,7 +14,13 @@ function Navbar({ history }) {
 
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
-
+    <div className='navbar-brand'>
+      <div className='navbar-item'>
+        <Link to='/'>
+          <h1 className='title brandfont is-size-2 has-text-white'>Language Connect</h1>
+        </Link>
+      </div>
+    </div>
     <div className="navbar-end">
 
       {loggedIn &&

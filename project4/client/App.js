@@ -30,7 +30,7 @@ import Post from './components/Post.js'
 import NewForm from './components/Form.js'
 import Home from './components/Home.js'
 import Login from './components/Login.js'
-import PrivateProfile from './components/PrivateProfile.js'
+import UpdatePost from './components/UpdatePost.js'
 import SignUp from './components/SignUp.js'
 import Search from './components/Search.js'
 import UserProfile from './components/UserProfile.js'
@@ -46,7 +46,7 @@ const App = () => (
       <Route exact path="/post/:post_id" component={Post} />
       <Route exact path="/form" component={NewForm} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/privateprofile" component={PrivateProfile} />
+      <Route exact path="/updatepost" component={UpdatePost} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/userprofile" component={UserProfile} />
