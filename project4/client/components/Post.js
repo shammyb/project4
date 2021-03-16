@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { isCreator } from '../lib/auth.js'
 
 function Post({ match }) {
   const id = match.params.post_id
@@ -35,7 +37,7 @@ function Post({ match }) {
           <h5 className='brandfont has-text-info'>Level: {post.level}</h5>
           <h5 className='brandfont has-text-info'>Dialect: {post.dialect}</h5>
           <p className='brandfont has-text-info'>Description: {post.description}</p>
-          
+
           <p className='brandfont has-text-info'>Availability: {post.availability}</p>
           <div className='box px-6 pt-6 pb-6 mt-4'>
             <h4 className='title brandfont has-text-info'>Meet the User: {post.user.first_name}</h4>
@@ -44,28 +46,16 @@ function Post({ match }) {
             <p className='brandfont has-text-info'>Timezone: {post.user.time_zone}</p>
             <a href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
           </div>
+          {isCreator(post.user.id) ?
+            <Link className='button is-primary mb-4' to={`/updatepost/${post.id}`}>Edit post</Link>
+            :
+            <a href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+          }
           <div>
             <h3>Comments to insert</h3>
 
           </div>
-          {/* <p>Place type: {property.isEntirePlace ? 'Entire place' : 'Room only'} </p>
 
-          <p>Check in: {property.checkInTime}</p>
-          <p>Check out: {property.checkOutTime}</p>
-          <p>{property.houseRules}</p>
-
-          <h5 className='title brandfont has-text-info is-size-3 mb-1 mt-4'>Amenities</h5>
-          {property.amenities.length > 0 &&
-            property.amenities.map((amenity, index) => {
-              return <p key={index}>
-                {amenity.amenityValue ?
-                  <i className='fas fa-check-circle mr-2'></i>
-                  :
-                  <i className='fas fa-times-circle mr-2'></i>}
-                {amenity.amenityName}
-              </p>
-            })
-          } */}
         </div>
       </div>
     </div>
