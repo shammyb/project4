@@ -22,7 +22,7 @@ function Search() {
     fetchPosts()
   }, [apiUrl])
 
-  
+
 
   function getStudents() {
     return posts.filter(student => student.is_offer !== true)
@@ -39,14 +39,14 @@ function Search() {
   }
   function filtering(tof) {
     if (tof === 'teachers') {
-      
+
       setOption(getTeachers())
-      
+
     } else if (tof === 'students') {
-      
+
       setOption(getStudents())
     } else {
-      
+
       setOption(posts)
     }
   }
@@ -63,18 +63,23 @@ function Search() {
         <option value='5'>Mandarin</option>
         <option value='6'>Hebrew</option>
       </select>
-      <select className='dropdown is-hoverable is-centered ml-1'onChange={(e) => {
+      <select className='dropdown is-hoverable is-centered ml-1' onChange={(e) => {
         setTof(e.target.value)
       }}>
         <option value='all'>Teachers and student requests</option>
         <option value='teachers'>Looking for Teacher</option>
         <option value='students'>Looking for a student</option>
       </select>
-      <div className="control ml-2">
-        <input className="input is-primary" type="text" placeholder="Level 1, 2 or 3" />
-      </div>
+      <select className='dropdown is-hoverable is-centered mr-1 ml-1' onChange={(event) => {
+        updateLevel(event.target.value)
+      }}>
+        <option value="">Select a level</option>
+        <option value="1">Beginner (Level 1)</option>
+        <option value="2">Intermediate (Level 2)</option>
+        <option value="3">Advanced (Level 3)</option>
+      </select>
     </div>
-    <button onClick = {() => filtering(tof)}>submit</button>
+    <button onClick={() => filtering(tof)}>submit</button>
     <div className='container'>
 
       {option.map((post) => {
