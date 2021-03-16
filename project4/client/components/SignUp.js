@@ -52,7 +52,6 @@ function SignUp({ history }) {
 
   return (
     <>
-      <h1>Sign Up!</h1>
 
       <Formik
         initialValues={{
@@ -111,53 +110,74 @@ function SignUp({ history }) {
         }}
       >
 
-        <Form>
-          <MyTextInput
-            label="Username"
-            name="username"
-            type="text"
-            placeholder="PenelopeC1982"
-          />
+        <section className="form-container brandfont">
+          <Form>
+            <p className="title">Sign Up!</p>
 
-          <MyTextInput
-            label="Email Address"
-            name="email"
-            type="email"
-            placeholder="penelope@gmail.com"
-          />
+            <div className="field">
+              <MyTextInput
+                label="First Name"
+                name="first_name"
+                type="text"
+                placeholder="Penelope"
+                className="input"
+              />
+            </div>
 
-          <MyTextInput
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="******"
-          />
+            <div className="field">
+              <MyTextInput
+                label="Username"
+                name="username"
+                type="text"
+                placeholder="PenelopeC1982"
+                className="input"
+              />
+            </div>
 
-          <MyTextInput
-            label="First Name"
-            name="first_name"
-            type="text"
-            placeholder="Penelope"
-          />
+            <div className="field">
+              <MyTextInput
+                label="Email Address"
+                name="email"
+                type="email"
+                placeholder="penelope@gmail.com"
+                className="input"
+              />
+            </div>
 
-          <MyTextInput
-            label="Biography"
-            name="bio"
-            type="text"
-            placeholder="Hi! I'm Penelope. I am from the United States and am a native English and Spanish speaker. I like movies, dogs and cooking."
-          />
+            <div className="field">
+              <MyTextInput
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="******"
+                className="input"
+              />
+            </div>
 
-          <MyTextInput
-            label="Time Zone"
-            name="time_zone"
-            type="text"
-            placeholder="EST"
-          />
+            <div className="field">
+              <MyTextInput
+                label="Biography"
+                name="bio"
+                type="text"
+                placeholder="Hi! I'm Penelope. I am from the United States and am a native English and Spanish speaker. I like movies, dogs and cooking."
+                className="input"
+              />
+            </div>
 
-          <button type="submit">Submit</button>
+            <div className="field">
+              <MyTextInput
+                label="Time Zone"
+                name="time_zone"
+                type="text"
+                placeholder="EST"
+                className="input"
+              />
+            </div>
 
-        </Form>
+            <button type="submit" className="brandfont">Submit</button>
 
+          </Form>
+        </section>
       </Formik>
 
 

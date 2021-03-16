@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function Search() {
   const [posts, updatePosts] = useState([])
   const [loading, updateLoading] = useState(true)
+  const [level, updateLevel] = useState('')
   const [apiUrl, setApiUrl] = useState('/api/posts')
   const [tof, setTof] = useState('all')
   const [option, setOption] = useState([])
