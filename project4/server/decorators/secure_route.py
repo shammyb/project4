@@ -12,7 +12,8 @@ def secure_route(func):
         token_with_bearer = request.headers.get('Authorization')
 
         if not token_with_bearer:
-            return {'Message': 'Unauthorized'}, 401
+            print('Unauthorized 1')
+            return {'Message': 'Unauthorized 1'}, 401
 
         token = token_with_bearer.replace('Bearer ', '')
         
@@ -25,7 +26,9 @@ def secure_route(func):
             user = User.query.get(user_id)
 
             if not user:
-                return {'Message': 'Unauthorized'}, 401
+                print('Unauthorized 2')
+
+                return {'Message': 'Unauthorized 2'}, 401
 
         
             g.current_user = user

@@ -25,7 +25,7 @@ class User(db.Model, BaseModel):
     bio = db.Column(db.Text, nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     time_zone = db.Column(db.String(7), nullable=False)
-    languages_spoken = db.Column(db.Text, nullable=False)
+    # languages_spoken = db.Column(db.Text, nullable=True)
     password_hash = db.Column(db.String(128), nullable=True)
     posts = db.relationship('Post', backref='user', cascade="all, delete")
     comments = db.relationship('Comment', backref='user', cascade="all, delete")

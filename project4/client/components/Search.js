@@ -34,7 +34,7 @@ function Search() {
   return <div className='hero mb-4 home'>
     <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-4' onChange={(event) => { 
+      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => { 
         setApiUrl(`/api/posts/language/${event.target.value}`)
       }}>
         <option value='1'>English</option>
@@ -44,10 +44,13 @@ function Search() {
         <option value='5'>Mandarin</option>
         <option value='6'>Hebrew</option>
       </select>
-      <select className='dropdown is-hoverable is-centered ml-4'>
+      <select className='dropdown is-hoverable is-centered ml-1'>
         <option>Looking for Teacher</option>
         <option>Looking for a student</option>
       </select>
+      <div className="control ml-2">
+      <input className="input is-primary" type="text" placeholder="Level 1, 2 or 3" />
+      </div>
     </div>
     <div className='container'>
       {posts.map((post) => {

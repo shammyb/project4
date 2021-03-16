@@ -45,3 +45,23 @@ footer {
 	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
 	grid-gap: 0.5em;
 }
+.is-link{
+  color: white;
+}
+.is-link:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  color: #CA910D;
+  background: #CA910D;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.is-link:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
