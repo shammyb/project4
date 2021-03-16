@@ -75,7 +75,6 @@ function Post({ match }) {
           <div className='box px-6 pt-6 pb-6 mt-4'>
             <h4 className='title brandfont has-text-info'>Meet the User: {post.user.first_name}</h4>
             <p className='brandfont has-text-info'>{post.user.bio}</p>
-            <p className='brandfont has-text-info'>Speaks: {post.user.languages_spoken}</p>
             <p className='brandfont has-text-info'>Timezone: {post.user.time_zone}</p>
             
           </div>
