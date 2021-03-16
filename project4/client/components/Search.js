@@ -25,11 +25,7 @@ function Search() {
   //     post.isOffer &&
   //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
   // )
-  function filterLevels() {
-    return posts.filter(post => {
-      return(post.level.includes(level))
-    })
-  }
+  
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
