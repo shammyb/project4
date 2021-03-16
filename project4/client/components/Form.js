@@ -102,11 +102,11 @@ function NewForm({ history }) {
             description: values.description,
             language_id: values.language_id
 
-          }, 
-          {
-            headers: { Authorization: `Bearer ${token}` }
+          },
+            {
+              headers: { Authorization: `Bearer ${token}` }
 
-          })
+            })
 
           history.push('/search')
 
@@ -127,12 +127,19 @@ function NewForm({ history }) {
             placeholder="A short description of what you're looking for"
           />
 
-          <MyTextInput
+          {/* <MyTextInput
             label="Level"
             name="level"
             type="text"
             placeholder="What level are you looking for: beginner, middle or advanced?"
-          />
+          /> */}
+
+          <MySelect label="Level" name="level">
+            <option value="">Select a level</option>
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+          </MySelect>
 
           <MyTextInput
             label="Dialect"

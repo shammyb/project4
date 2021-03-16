@@ -41,7 +41,6 @@ function Navbar({ history }) {
       <div className='navbar-item has-text-secondary'>
       <p className="navbar-item"><Link className='has-link-black is-link' to='/form'>New Post</Link></p>
     </div>
-        
       }
       {loggedInUser.id &&
         <div className='navbar-item has-text-secondary'>

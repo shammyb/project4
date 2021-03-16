@@ -123,6 +123,7 @@ def remove_post(post_id):
 @secure_route
 def create_comment(post_id):
     comment_dictionary = request.json
+    print(comment_dictionary)
 
     post = Post.query.get(post_id)
     user = g.current_user

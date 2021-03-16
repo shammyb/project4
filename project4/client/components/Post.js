@@ -6,34 +6,39 @@ import { Link } from 'react-router-dom'
 
 function Post({ match }) {
   const token = localStorage.getItem('token')
-  const [comment, setComment] = useState('')
+  const [content, setComment] = useState('')
   const id = match.params.post_id
   const [post, updatePost] = useState([])
   const [loading, updateLoading] = useState(true)
   const loggedIn = getLoggedInUserId()
 
   //const [error, updateError] = useState(false)
-  console.log(match)
+
+
+  async function fetchData() {
+    await axios.get(`/api/posts/${id}`)
+      .then(({ data }) => {
+        updatePost(data)
+        updateLoading(false)
+      })
+
+  }
+
   useEffect(() => {
 
-    async function fetchData() {
-      await axios.get(`/api/posts/${id}`)
-        .then(({ data }) => {
-          updatePost(data)
-          updateLoading(false)
-        })
-
-    }
     fetchData()
   }, [])
 
   async function handleComment() {
-    const { data } = await axios.post(`/api/posts/${id}/comments`, { comment }, {
+
+    await axios.post(`/api/posts/${id}/comments`, { content }, {
       headers: { Authorization: `Bearer ${token}` }
     })
 
     setComment('')
-    updatePost(data)
+    fetchData()
+
+
 
   }
   async function handleDeleteComment(commentId) {
@@ -65,35 +70,32 @@ function Post({ match }) {
     <div className='box px-6 pt-6 pb-6 mb-3'>
       <div className='columns'>
         <div className='column'>
-          <h2 className='title brandfont has-text-info is-size-3 mb-1 mt-4'>{post.title}</h2>
+          <h2 className='title brandfont is-size-3 mb-1 mt-4' id='olive-green-text'>{post.title}</h2>
           <h3 className='brandfont is-size-4'>Posted by: {post.user.username}</h3>
-          <h5 className='brandfont has-text-info'>Level: {post.level}</h5>
-          <h5 className='brandfont has-text-info'>Dialect: {post.dialect}</h5>
-          <p className='brandfont has-text-info'>Description: {post.description}</p>
+          <h5 className='brandfont'>Level: {post.level}</h5>
+          <h5 className='brandfont'>Dialect: {post.dialect}</h5>
+          <p className='brandfont'>Description: {post.description}</p>
 
-          <p className='brandfont has-text-info'>Availability: {post.availability}</p>
+          <p className='brandfont'>Availability: {post.availability}</p>
           <div className='box px-6 pt-6 pb-6 mt-4'>
-            <h4 className='title brandfont has-text-info'>Meet the User: {post.user.first_name}</h4>
-            <p className='brandfont has-text-info'>{post.user.bio}</p>
-            <p className='brandfont has-text-info'>Timezone: {post.user.time_zone}</p>
-            
+            <h4 className='title brandfont' id='olive-green-text'>Meet {post.user.first_name}</h4>
+            <p className='brandfont'>{post.user.bio}</p>
+            <p className='brandfont'>Timezone: {post.user.time_zone}</p>
           </div>
           {isCreator(post.user.id) ?
-            <Link className='button is-primary mb-4' to={`/updatepost/${post.id}`}>Edit post</Link>
+            <Link className='button mb-4' id='olive-green-button' to={`/updatepost/${post.id}`}>Edit post</Link>
             :
-            <a className='button is-secondary mb-4' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+            <a className='button mb-4' id='olive-green-button' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
           }
           <div>
-            {console.log('bbb' + JSON.stringify(post.post_comments))}
-            {console.log('bbb' + JSON.stringify(post))}
             <div>
               <div className="container is-centered">
-                <h2 className="title is-2">Share you experiences from {post.user.username} </h2>
+                <h2 className="title is-2" id='olive-green-text'>Share you experiences from {post.user.username} </h2>
                 <div className="column">
                   <div className="columns is-multiline is-centered">
                     {
-                      post.post_comments && post.post_comments.map(commenting => {
-                        return <article key={id} className="media">
+                      post.post_comments && post.post_comments.map((commenting, index) => {
+                        return <article key={index} className="media">
                           <div className="media-content">
                             <div className="content">
                               <p className="subtitle">
@@ -105,7 +107,7 @@ function Post({ match }) {
                           {isCreator(commenting.user.id) && <div className="media-right">
                             <button
                               className="button is-danger"
-                              onClick={() => handleDeleteComment(commenting._id)}>
+                              onClick={() => handleDeleteComment(commenting.id)}>
                               Delete
                             </button>
                           </div>}
@@ -126,11 +128,11 @@ function Post({ match }) {
                           <p className="control">
                             <textarea
                               className="textarea"
-                              placeholder="Share your experience..."
+                              placeholder="make a comment"
                               onChange={event => setComment(event.target.value)}
-                              value={comment}
+                              value={content}
                             >
-                              {comment}
+                              {content}
                             </textarea>
                           </p>
                         </div>
@@ -139,7 +141,8 @@ function Post({ match }) {
                             {/* editNumber === 0 &&  */}
                             <button
                               onClick={handleComment}
-                              className="button is-info"
+                              className="button is-warning"
+                              
                             >
                               Submit
                             </button>

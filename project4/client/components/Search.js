@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function Search() {
   const [posts, updatePosts] = useState([])
   const [loading, updateLoading] = useState(true)
+  const [level, updateLevel] = useState('')
   const [apiUrl, setApiUrl] = useState('/api/posts')
   useEffect(() => {
     async function fetchPosts() {
@@ -24,7 +25,11 @@ function Search() {
   //     post.isOffer &&
   //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
   // )
-
+  function filterLevels() {
+    return posts.filter(post => {
+      return(post.level.includes(level))
+    })
+  }
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
@@ -34,7 +39,7 @@ function Search() {
   return <div className='hero mb-4 home'>
     <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => {
+      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => { 
         setApiUrl(`/api/posts/language/${event.target.value}`)
       }}>
         <option value='1'>English</option>
@@ -44,11 +49,12 @@ function Search() {
         <option value='5'>Mandarin</option>
         <option value='6'>Hebrew</option>
       </select>
-      <select className='dropdown is-hoverable is-centered ml-1 mr-1'>
+      <select className='dropdown is-hoverable is-centered ml-1'>
         <option>Looking for Teacher</option>
         <option>Looking for a student</option>
       </select>
-      <select className='dropdown is-hoverable is-centered mr-1 ml-1'>
+      <select className='dropdown is-hoverable is-centered mr-1 ml-1' onChange={(event) => {
+        updateLevel(event.target.value)}}>
         <option value="">Select a level</option>
         <option value="1">Beginner (Level 1)</option>
         <option value="2">Intermediate (Level 2)</option>
