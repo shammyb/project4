@@ -37,7 +37,14 @@ nav{
   background: linear-gradient(to right, rgba(71, 104, 41, 1), rgba(88, 144, 42, 1));
   background-position: fixed;
 }
-
+.post-background{
+  background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
+    url("https://images.pexels.com/photos/408503/pexels-photo-408503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.box{
+  margin: 0 auto;
+  text-align: center;
+}
 .home {
   background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
     url("https://images.pexels.com/photos/269633/pexels-photo-269633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
@@ -81,4 +88,18 @@ h1 {
 #olive-green-button{
   background-color:$olive-green;
   color:white;
+}
+.card{
+  min-height: 200px;
+  max-height: 200px;
+}
+.post-info{
+  max-width: 600px;
+}
+.meet-user{
+  max-width: 400px;
+}
+ul {
+  max-width: 100px;
+  text-align: center;
 }
