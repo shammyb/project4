@@ -11,7 +11,7 @@ function Navbar({ history }) {
   setTimeout(() => {
 
     const userId = getLoggedInUserId()
-    
+
     async function getLoggedInUser() {
       const { data } = await axios.get(`/api/profile/${userId}`)
       updateLoggedInUser(data)
@@ -37,18 +37,18 @@ function Navbar({ history }) {
       </div>
     </div>
     <div className="navbar-end">
-
-      {loggedInUser._id &&
+      {loggedInUser.id &&
+        <div className='navbar-item has-text-white'>
+          <Link className='button is-light' to='/form'>New Post</Link>
+        </div>
+      }
+      {loggedInUser.id &&
         <div className="navbar-item">
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link"></a>
+          <div className="navbar-item is-hoverable">
+            
+            <p className="navbar-item is-hoverable"><Link className="navbar-item" to={`/profile/${loggedInUser._id}`}>Hello {loggedInUser.first_name}</Link></p>
+            
 
-            <div className="navbar-dropdown">
-              <p className="navbar-item tag">{loggedInUser.first_name}</p>
-              {/* <Link className="navbar-item" to={`/profile/${loggedInUser._id}`}>
-                Profile
-              </Link> */}
-            </div>
           </div>
         </div>}
       <div className="navbar-item">
@@ -61,7 +61,7 @@ function Navbar({ history }) {
             <Link className="button is-light" to={'/signup'}>
               <strong>Sign up</strong>
             </Link>}
-          {loggedInUser._id &&
+          {loggedInUser.id &&
             <button className="button is-warning" onClick={logout}>Sign Out</button>}
         </div>
       </div>

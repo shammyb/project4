@@ -56,6 +56,7 @@ function Search() {
 
             <h2 className='title is-size-3 brandfont'>{post.title}</h2>
             <h4>Level: {post.level}</h4>
+            <h5>Posted by {post.user.first_name}</h5>
 
           </div>
         </Link>

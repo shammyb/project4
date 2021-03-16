@@ -77,17 +77,16 @@ function Post({ match }) {
             <p className='brandfont has-text-info'>{post.user.bio}</p>
             <p className='brandfont has-text-info'>Speaks: {post.user.languages_spoken}</p>
             <p className='brandfont has-text-info'>Timezone: {post.user.time_zone}</p>
-            <a href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+            
           </div>
           {isCreator(post.user.id) ?
             <Link className='button is-primary mb-4' to={`/updatepost/${post.id}`}>Edit post</Link>
             :
-            <a href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+            <a className='button is-secondary mb-4' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
           }
           <div>
             {console.log('bbb' + JSON.stringify(post.post_comments))}
             {console.log('bbb' + JSON.stringify(post))}
-            <h3>Comments to insert</h3>
             <div>
               <div className="container is-centered">
                 <h2 className="title is-2">Share you experiences from {post.user.username} </h2>
