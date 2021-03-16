@@ -38,9 +38,9 @@ function Navbar({ history }) {
     </div>
     <div className="navbar-end">
       {loggedInUser.id &&
-        <div className='navbar-item has-text-white'>
-          <Link className='button is-light' to='/form'>New Post</Link>
-        </div>
+      <div className='navbar-item has-text-secondary'>
+      <p className="navbar-item"><Link className='has-link-black is-link' to='/form'>New Post</Link></p>
+    </div>
       }
       {loggedInUser.id &&
         <div className='navbar-item has-text-secondary'>

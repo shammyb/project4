@@ -5,7 +5,7 @@
 
 
 // Set your brand colors
-$olive-green: #e5f1d9;
+$olive-green: #4D6A2A;
 $light-olive: #63922A;
 $apple-green: #94B70A;
 $gold: #CA910D;
@@ -27,11 +27,13 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+.title{
+  color: $olive-green;
+}
 .brandfont {
   font-family: "Montserrat", "arial", sans-serif;
 }
-nav,
-footer {
+nav{
   background: linear-gradient(to right, rgba(71, 104, 41, 1), rgba(88, 144, 42, 1));
   background-position: fixed;
 }
@@ -125,3 +127,16 @@ button {
 
 
 
+h1 {
+  color: rgba(71, 104, 41, 1);
+}
+.footer{
+  color: $olive-green;
+}
+#olive-green-text{
+  color: $olive-green;
+}
+#olive-green-button{
+  background-color:$olive-green;
+  color:white;
+}

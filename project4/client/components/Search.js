@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function Search() {
   const [posts, updatePosts] = useState([])
   const [loading, updateLoading] = useState(true)
+  const [level, updateLevel] = useState('')
   const [apiUrl, setApiUrl] = useState('/api/posts')
   useEffect(() => {
     async function fetchPosts() {
@@ -24,7 +25,7 @@ function Search() {
   //     post.isOffer &&
   //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
   // )
-
+  
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
@@ -48,9 +49,13 @@ function Search() {
         <option>Looking for Teacher</option>
         <option>Looking for a student</option>
       </select>
-      <div className="control ml-2">
-      <input className="input is-primary" type="text" placeholder="Level 1, 2 or 3" />
-      </div>
+      <select className='dropdown is-hoverable is-centered mr-1 ml-1' onChange={(event) => {
+        updateLevel(event.target.value)}}>
+        <option value="">Select a level</option>
+        <option value="1">Beginner (Level 1)</option>
+        <option value="2">Intermediate (Level 2)</option>
+        <option value="3">Advanced (Level 3)</option>
+      </select>
     </div>
     <div className='container'>
       {posts.map((post) => {
