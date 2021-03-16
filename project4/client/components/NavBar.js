@@ -44,7 +44,7 @@ function Navbar({ history }) {
       }
       {loggedInUser.id &&
         <div className='navbar-item has-text-secondary'>
-          <p className="navbar-item"><Link className="has-link-black is-link" to={`/profile/${loggedInUser._id}`}>Hello {loggedInUser.first_name}</Link></p>
+          <p className="navbar-item"><Link className="has-link-black is-link" to={`/profile/${loggedInUser.id}`}>Hello {loggedInUser.first_name}</Link></p>
         </div>
       }
       <div className="navbar-item">

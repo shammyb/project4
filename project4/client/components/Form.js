@@ -51,7 +51,6 @@ function NewForm({ history }) {
 
   return (
     <>
-      <h1>Make a new post</h1>
 
       <Formik
         initialValues={{
@@ -102,10 +101,9 @@ function NewForm({ history }) {
             description: values.description,
             language_id: values.language_id
 
-          }, 
+          },
           {
             headers: { Authorization: `Bearer ${token}` }
-
           })
 
           history.push('/search')
@@ -119,69 +117,144 @@ function NewForm({ history }) {
         }}
       >
 
-        <Form>
-          <MyTextInput
-            label="Title"
-            name="title"
-            type="text"
-            placeholder="A short description of what you're looking for"
-          />
+        <section className="form-container brandfont">
+          <Form>
+            <p className="title">Make a new post</p>
 
-          <MyTextInput
-            label="Level"
-            name="level"
-            type="text"
-            placeholder="What level are you looking for: beginner, middle or advanced?"
-          />
+            <div className="field">
+              <MyTextInput
+                label="Title*"
+                name="title"
+                type="text"
+                placeholder="Brief summary of your needs"
+                className="input"
+              />
+            </div>
 
-          <MyTextInput
-            label="Dialect"
-            name="dialect"
-            type="text"
-            placeholder="For example, Argentinian Spanish or Gulf Arabic"
-          />
+            {/* <div className="checkbox-container"> */}
+            <div className="field">
+              <label>Check if you wish to be the teacher*</label>
+              <MyCheckbox name="checkbox">
+                I'll teach!
+              </MyCheckbox>
+            </div>
 
-          <div className="checkbox-container">
-            <label>Check below if you are wish to be the teacher</label>
-            <MyCheckbox name="checkbox">
-              I'll teach!
-            </MyCheckbox>
+            {/* <div className="select-field"> */}
+            <div className="field">
+              <label>Language*</label>
+              <MySelect name="language_id" className="brandfont">
+                <option value="">Select a language</option>
+                <option value="1">English</option>
+                <option value="2">Spanish</option>
+                <option value="3">French</option>
+                <option value="4">Arabic</option>
+                <option value="5">Mandarin</option>
+                <option value="6">Hebrew</option>
+              </MySelect>
+            </div>
+
+            <div className="field">
+              <label>Level*</label>
+              <MySelect name="level" className="brandfont">
+                <option value="">Select a level</option>
+                <option value="1">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+              </MySelect>
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Dialect"
+                name="dialect"
+                type="text"
+                placeholder="For example, Argentinian Spanish or Gulf Arabic"
+                className="input"
+              />
+            </div>
+
+
+            <div className="field">
+              <MyTextInput
+                label="Availability"
+                name="availability"
+                type="text"
+                placeholder="When do you have time for class?"
+                className="input"
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Description"
+                name="description"
+                type="text"
+                placeholder="Describe what you're looking for!"
+                className="input"
+              />
+            </div>
+
+
+            <button
+              type="submit"
+              className="brandfont"
+            >Submit</button>
+
+          </Form>
+
+          <div className="form-instructions">
+            <h1>How to fill out this form:</h1>
+
+            <div className="form-instruction">
+              <ul>Fields marked with * are required</ul>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Title</ul>
+              <li>Write a short description of what you are looking for. This will be the first thing potential students/teachers see!</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Checkbox</ul>
+              <li>If you are offering your services as a teacher, check this box so that you're information can be properly filtered</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Language</ul>
+              <li>What language you wish to learn/teach</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Level</ul>
+              <li>If you are offering your services as a teacher, please choose the level you feel most comfortable teaching</li>
+              <li>If you are looking to learn, please choose which level you would like to start at</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Dialect</ul>
+              <li>Have a particular dialect in mind? Include it here</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Availability</ul>
+              <li>When do you have time for class? Be as specific as you can!</li>
+            </div>
+
+            <div className="form-instruction">
+              <ul>Description</ul>
+              <li>Is there any additional pertinent information you want to add? Include it here!</li>
+            </div>
           </div>
 
-          <MyTextInput
-            label="Availability"
-            name="availability"
-            type="text"
-            placeholder="When do you have time for class?"
-          />
 
-          <MyTextInput
-            label="Description"
-            name="description"
-            type="text"
-            placeholder="Describe what you're looking for!"
-          />
-
-          <MySelect label="Language" name="language_id">
-            <option value="">Select a language</option>
-            <option value="1">English</option>
-            <option value="2">Spanish</option>
-            <option value="3">French</option>
-            <option value="4">Arabic</option>
-            <option value="5">Mandarin</option>
-            <option value="6">Hebrew</option>
-          </MySelect>
-
-
-          <button type="submit">Submit</button>
-
-        </Form>
-
+        </section>
       </Formik>
 
 
 
+
     </>
+
   )
 
 
