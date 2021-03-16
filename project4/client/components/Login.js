@@ -31,8 +31,6 @@ function Login({ history }) {
           password: ''
         }}
 
-
-        //make async
         onSubmit={async (values, { setSubmitting }) => {
           const { data } = await axios.post('/api/login', {
             email: values.email,

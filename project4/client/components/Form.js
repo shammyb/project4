@@ -64,7 +64,7 @@ function NewForm({ history }) {
           language_id: ''
         }}
 
-        validationSchme={Yup.object({
+        validationScheme={Yup.object({
           title: Yup.string()
             .min(5, 'Must be at least 5 characters')
             .max(25, 'Maximum of 25 characters')
@@ -90,8 +90,9 @@ function NewForm({ history }) {
         })}
 
 
-        // headers: { Authorization: `Bearer ${token}` }
         onSubmit={async (values, { setSubmitting }) => {
+          const token = localStorage.getItem('token')
+
           const { data } = await axios.post('/api/posts', {
             title: values.title,
             level: values.level,
@@ -100,8 +101,16 @@ function NewForm({ history }) {
             availability: values.availability,
             description: values.description,
             language_id: values.language_id
+
+          }, 
+          {
+            headers: { Authorization: `Bearer ${token}` }
+
           })
-          history.push('/posts')
+
+          history.push('/search')
+
+          console.log(values, 'woooooo')
 
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2))
