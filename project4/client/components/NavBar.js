@@ -5,13 +5,28 @@ import { getLoggedInUserId } from '../lib/auth.js'
 import axios from 'axios'
 
 function Navbar({ history }) {
-  function handleLogout() {
-    localStorage.removeItem('token') 
+
+  const [loggedInUser, updateLoggedInUser] = useState([])
+
+  setTimeout(() => {
+
+    const userId = getLoggedInUserId()
+    
+    async function getLoggedInUser() {
+      const { data } = await axios.get(`/api/profile/${userId}`)
+      updateLoggedInUser(data)
+    }
+    if (userId) {
+      getLoggedInUser()
+    } else {
+      updateLoggedInUser([])
+    }
+  }, 1000)
+
+  function logout() {
     history.push('/')
+    localStorage.removeItem('token')
   }
-
-  const loggedIn = getLoggedInUserId()
-
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className='navbar-brand'>
@@ -23,13 +38,13 @@ function Navbar({ history }) {
     </div>
     <div className="navbar-end">
 
-      {loggedIn &&
+      {loggedInUser._id &&
         <div className="navbar-item">
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link"></a>
 
             <div className="navbar-dropdown">
-              <p className="navbar-item tag">{loggedIn.first_name}</p>
+              <p className="navbar-item tag">{loggedInUser.first_name}</p>
               {/* <Link className="navbar-item" to={`/profile/${loggedInUser._id}`}>
                 Profile
               </Link> */}
@@ -38,15 +53,15 @@ function Navbar({ history }) {
         </div>}
       <div className="navbar-item">
         <div className="buttons">
-          {loggedIn.length === 0 &&
+          {loggedInUser.length === 0 &&
             <Link className="button is-warning" to={'/login'}>
               Log in
             </Link>}
-          {loggedIn.length === 0 &&
+          {loggedInUser.length === 0 &&
             <Link className="button is-light" to={'/signup'}>
               <strong>Sign up</strong>
             </Link>}
-          {loggedIn.id &&
+          {loggedInUser._id &&
             <button className="button is-warning" onClick={logout}>Sign Out</button>}
         </div>
       </div>
