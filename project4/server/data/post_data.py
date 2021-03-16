@@ -167,7 +167,41 @@ list_posts = [
         description="if you would like to speak english hit me up",
         user_id=3,
         language_id=1
-        )
-    
-
+        ),
+    Post(
+         
+        title="French teacher needed",
+        level= 1, 
+        dialect="Paris", 
+        is_offer=False, 
+        image="a", 
+        availability="Weekends only please",
+        description="I am looking to start learning French for an upcming trip to Paris",
+        user_id=9,
+        language_id=3
+        ),
+    Post(
+         
+        title="Arabic with Rachel",
+        level= 2, 
+        dialect="Standard", 
+        is_offer=True, 
+        image="a", 
+        availability="Tuesday Evenings and Saturday Mornings",
+        description="I am looking to help out intermediate Arabic speakers further develop their skills!",
+        user_id=6,
+        language_id=4
+        ),
+        Post(
+         
+        title="French with Emma",
+        level= 3, 
+        dialect="Quebec", 
+        is_offer=True, 
+        image="a", 
+        availability="Thursdays, Fridays and Saturdays",
+        description="Bonjour! I am from Montreal, Quebec and am looking to take on advanced students who want to learn how the Quebecois speak!",
+        user_id=4,
+        language_id=3
+        ),
 ]

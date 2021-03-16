@@ -101,20 +101,25 @@ function Post({ match }) {
         <div className='column'>
         <div className='box is-centered post-info'>
           <h2 className='title brandfont is-size-3 mb-1 mt-4' id='olive-green-text'>{post.title}</h2>
-          <h3 className='brandfont is-size-4'>Posted by: {post.user.username}</h3>
-          <h5 className='brandfont'>Level: {post.level}</h5>
-          <h5 className='brandfont'>Dialect: {post.dialect}</h5>
-          <p className='brandfont'>Description: {post.description}</p>
+          <br />
+          <h5 className='brandfont pb-3'><span id='olive-green-text'>Level:</span> {post.level} </h5>
+          
+          <h5 className='brandfont pb-3'><span id='olive-green-text'>Dialect:</span> {post.dialect}</h5>
+          <p className='brandfont pb-3'><span id='olive-green-text'>Description:</span> {post.description}</p>
 
-          <p className='brandfont'>Availability: {post.availability}</p>
-          <div className='box px-6 pt-6 pb-6 mt-4 text-is-centered meet-user'>
-            <h4 className='title brandfont' id='olive-green-text'>Meet {post.user.first_name}</h4>
-            <p className='brandfont'>{post.user.bio}</p>
-            <p className='brandfont'>Timezone: {post.user.time_zone}</p>
+          <p className='brandfont pb-3'><span id='olive-green-text'>Availability:</span> {post.availability}</p>
+          <div className='box px-6 pt-5 pb-3 mt-4 text-is-centered meet-user' id='olive-background'>
+            <h4 className='title brandfont' id='gold-text'>Meet {post.user.first_name}</h4>
+            <p className='brandfont has-text-white'>{post.user.bio}</p>
+            <br />
+            <p className='brandfont has-text-white'>Timezone: {post.user.time_zone}</p>
+            <br />
+            <p className='brandfont has-text-white'>(Remember to consider your time differences when planning lessons!)</p>
+            <br />
             {isCreator(post.user.id) ?
-            <Link className='button mb-4' id='olive-green-button' to={`/updatepost/${post.id}`}>Edit post</Link>
+            <Link className='button mb-4 is-warning' to={`/updatepost/${post.id}`}>Edit post</Link>
             :
-            <a className='button mb-4' id='olive-green-button' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+            <a className='button mb-4 is-warning' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
           }
           </div>
           </div>

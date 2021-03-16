@@ -19,34 +19,6 @@ const MyTextInput = ({ label, ...props }) => {
   )
 }
 
-// const MyCheckbox = ({ children, ...props }) => {
-//   const [field, meta] = useField({ ...props, type: 'checkbox' })
-//   return (
-//     <div>
-//       <label className="checkbox-input">
-//         <input type="checkbox" {...field} {...props} />
-//         {children}
-//       </label>
-//       {meta.touched && meta.error ? (
-//         <div className="error">{meta.error}</div>
-//       ) : null}
-//     </div>
-//   )
-// }
-
-
-// const MySelect = ({ label, ...props }) => {
-//   const [field, meta] = useField(props)
-//   return (
-//     <div>
-//       <label htmlFor={props.id || props.name}>{label}</label>
-//       <select {...field} {...props} />
-//       {meta.touched && meta.error ? (
-//         <div className="error">{meta.error}</div>
-//       ) : null}
-//     </div>
-//   )
-// }
 
 
 function UserProfile({ match, params, history }) {
@@ -112,15 +84,7 @@ function UserProfile({ match, params, history }) {
     <>
 
       <Formik
-        initialValues={{
-          username: '',
-          email: '',
-          password: '',
-          first_name: '',
-          bio: '',
-          time_zone: '',
-          languages_spoken: ''
-        }}
+        initialValues={userData}
 
         validationScheme={Yup.object({
           username: Yup.string()
@@ -149,7 +113,9 @@ function UserProfile({ match, params, history }) {
 
         //make async
         onSubmit={async (values, { setSubmitting }) => {
-          const { data } = await axios.put(`/api/profile/${userData.id}`, {
+          const { data } = await axios.put(`/api/profile/${id}`, 
+          { headers: { Authorization: `Bearer ${token}` } },
+          {
 
             username: values.username,
             email: values.email,
@@ -160,7 +126,7 @@ function UserProfile({ match, params, history }) {
           })
 
           history.push('/search')
-
+          console.log(values, 'woooooo')
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2))
             setSubmitting(false)
@@ -244,7 +210,7 @@ function UserProfile({ match, params, history }) {
               />
             </div>
 
-            <button type="submit" className="brandfont">Submit</button>
+            <button type="submit" className="button is-warning brandfont">Submit</button>
             <button className="button is-danger mt-5" onClick={handleDeleteUser}>Delete my account</button>
           </Form>
         </section>

@@ -47,9 +47,9 @@ const MySelect = ({ label, ...props }) => {
 }
 
 function UpdatePost({ history, match }) {
+  const token = localStorage.getItem('token')
   const [error, updateError] = useState('')
-  const [deleteModal, setDeleteModal] = useState('modal')
-
+  const [errorState, updateErrorState] = useState(false)
   const id = match.params.post_id
   const [ownerId, updateOwnerId] = useState('')
   const [formData, updateFormData] = useState({
@@ -90,19 +90,30 @@ function UpdatePost({ history, match }) {
     updateFormData({ ...formData, [name]: value })
   }
 
+  function handleDeletePost(event) {
+    const token = localStorage.getItem('token')
+    event.preventDefault()
+
+    try {
+      axios.delete(`/api/posts/${post.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(resp => {
+          history.push('/search')
+        })
+
+    } catch (err) {
+      updateErrorState(true)
+      
+      
+    }
+  }
   return (
     <>
 
       <Formik
-        initialValues={{
-          title: '',
-          level: '',
-          dialect: '',
-          is_offer: false,
-          availability: '',
-          description: '',
-          language_id: ''
-        }}
+      enableReinitialize={true}
+        initialValues={formData}
 
         validationScheme={Yup.object({
           title: Yup.string()
@@ -249,9 +260,12 @@ function UpdatePost({ history, match }) {
 
 
             <button
+
               type="submit"
-              className="brandfont"
+              className="button is-warning brandfont"
             >Submit</button>
+
+            <button className="button is-danger mt-5" onClick={handleDeletePost}>Delete Post</button>
 
           </Form>
 

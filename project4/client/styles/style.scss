@@ -2,7 +2,9 @@
 
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
+* {
+  font-family: "Montserrat", "arial", sans-serif;
+}
 
 // Set your brand colors
 $olive-green: #4D6A2A;
@@ -39,7 +41,7 @@ nav{
 }
 .post-background{
   background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
-    url("https://images.pexels.com/photos/408503/pexels-photo-408503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    url("https://i.imgur.com/7TWO0eu.jpg");
 }
 .box{
   margin: 0 auto;
@@ -47,7 +49,7 @@ nav{
 }
 .home {
   background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
-    url("https://images.pexels.com/photos/269633/pexels-photo-269633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    url("https://i.imgur.com/Tvys7sG.jpeg");
 }
 .container{
 	display: grid;
@@ -151,6 +153,15 @@ h1 {
   min-height: 200px;
   max-height: 200px;
 }
+.card:hover{
+  background-color:#CA910D;
+}
+#card-info{
+  position: absolute;
+  bottom: 0;
+  margin-left: 20%;
+  padding-bottom: 10px;
+}
 .post-info{
   max-width: 600px;
 }
@@ -160,4 +171,25 @@ h1 {
 ul {
   max-width: 100px;
   text-align: center;
+}
+.center-text{
+  margin: 0 auto;
+}
+#search-button{
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+#dropdown-menu {
+  height: 30px;
+  padding: 5px;
+  background-color: $olive-green;
+  color: white;
+  font-weight: bold;
+}
+#gold-text{
+  color:#CA910D;
+}
+#olive-background{
+  background-color: $olive-green;
 }
