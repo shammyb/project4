@@ -19,22 +19,22 @@ function Search() {
     fetchPosts()
   }, [apiUrl])
 
+  // const filteredPosts = posts.filter(
+  //   post =>
+  //     post.isOffer &&
+  //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
+  // )
 
   if (loading) {
     return <>
-
       <h1>Loading posts...</h1>
     </>
   }
 
-  return <div className='block mb-4'>
-    <div>
-
-    </div>
-    <h1 className='title brandfont is-size-2 mt-4 ml-4'>Posts</h1>
+  return <div className='hero mb-4 home'>
+    <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-4' onChange={(event) => {
-        
+      <select className='dropdown is-hoverable is-centered mr-4' onChange={(event) => { 
         setApiUrl(`/api/posts/language/${event.target.value}`)
       }}>
         <option value='1'>English</option>
