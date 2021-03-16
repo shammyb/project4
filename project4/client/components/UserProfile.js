@@ -1,212 +1,261 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+// import ReactDOM from 'react-dom'
+import { Formik, Form, useField } from 'formik'
+import * as Yup from 'yup'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-
-export default function UserProfile({ history, match }) {
-  // const userId = match.params.usersId
-  // const [userData, updateUserData] = useState({
-  //   first_name: '',
-  //   last_name: '',
-  //   email: '',
-  //   password: '',
-  //   passwordConfirmation: '',
-  //   time_zone: '',
-  //   languages_spoken: ''
-  // })
-
-  // const [userDataLoading, updateUserDataLoading] = useState(true)
-
-  // const [error, updateError] = useState('')
-  // const [errorState, updateErrorState] = useState(false)
-  // const [formSuccess, updateFormSuccess] = useState(false)
-
-  // const token = localStorage.getItem('token')
-
-  // function getUser() {
-
-  //   axios.get(`/api/users/${userId}`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(({ data }) => {
-
-  //       updateUserData(data)
-  //       updateUserDataLoading(false)
-
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   getUser()
-  // }, [])
 
 
-  // function handleChange(event) {
-  //   const { name, value } = event.target
-  //   updateUserData({ ...userData, [name]: value })
-  // }
+const MyTextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props)
 
-  // async function handleSubmit(event) {
-  //   event.preventDefault()
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  )
+}
 
-  //   try {
-  //     const { data } = await axios.put(`/api/users/${userId}`, userData, {
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     })
-
-  //     getUser()
-  //     updateErrorState(false)
-  //     updateFormSuccess(true)
-  //   } catch (err) {
-  //     updateErrorState(true)
-  //     updateError(err.response.data.message)
-  //     updateFormSuccess(false)
-  //   }
-  // }
-
-  // function handleDeleteUser(event) {
-  //   event.preventDefault()
-
-  //   try {
-  //     axios.delete(`/api/users/${userId}`, {
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     })
-  //       .then(resp => {
-  //         history.push('/')
-  //       })
-
-  //   } catch (err) {
-  //     updateErrorState(true)
-  //     updateError(err.response.data.message)
-  //     updateFormSuccess(false)
-  //   }
-  // }
-
-  // if (userDataLoading) {
-  //   return <div className='loading'>
-  //     <img src='https://i.ibb.co/xDS2vQc/loading.gif' />
-  //   </div>
-  // }
+// const MyCheckbox = ({ children, ...props }) => {
+//   const [field, meta] = useField({ ...props, type: 'checkbox' })
+//   return (
+//     <div>
+//       <label className="checkbox-input">
+//         <input type="checkbox" {...field} {...props} />
+//         {children}
+//       </label>
+//       {meta.touched && meta.error ? (
+//         <div className="error">{meta.error}</div>
+//       ) : null}
+//     </div>
+//   )
+// }
 
 
-  // return <div className="section">
-
-  //   {errorState ? <div className="notification is-danger">{error}</div> : <div className="notification is-hidden"></div>}
-
-  //   {formSuccess ? <div className="notification is-success is-light">You updated your profile!.</div> : <div className="notification is-hidden"></div>}
-
-  //   <div className="columns">
-
-  //     <div className="column">
-  //       <h2 className='title is-2 mb-4'>User profile</h2>
-  //       <form onSubmit={handleSubmit}>
-
-  //         <div className="field">
-  //           <label className="label">First name</label>
-  //           <div className="control">
-  //             <input
-  //               className="input"
-  //               type="text"
-  //               value={userData.first_name}
-  //               onChange={handleChange}
-  //               name={'first_name'}
-  //             />
-  //           </div>
-  //         </div>
-  //         <div className="field">
-  //           <label className="label">Last name</label>
-  //           <div className="control">
-  //             <input
-  //               className="input"
-  //               type="text"
-  //               value={userData.last_name}
-  //               onChange={handleChange}
-  //               name={'last_name'}
-  //             />
-  //           </div>
-  //         </div>
-  //         <div className="field">
-  //           <label className="label">Email</label>
-  //           <div className="control">
-  //             <input
-  //               className="input"
-  //               type="text"
-  //               value={userData.email}
-  //               onChange={handleChange}
-  //               name={'email'}
-  //             />
-  //           </div>
-  //         </div>
-  //         <div className="field">
-  //           <label className="label">Password</label>
-  //           <div className="control">
-  //             <input
-  //               className="input"
-  //               type="password"
-  //               value={userData.password}
-  //               onChange={handleChange}
-  //               name={'password'}
-  //             />
-  //           </div>
-  //         </div>
-  //         <div className="field">
-  //           <label className="label">Confirm Password</label>
-  //           <div className="control">
-  //             <input
-  //               className="input"
-  //               type="password"
-  //               value={userData.passwordConfirmation}
-  //               onChange={handleChange}
-  //               name={'passwordConfirmation'}
-  //             />
-  //           </div>
-  //           <div className="field">
-  //             <label className="label mt-3">Bio</label>
-  //             <div className="control">
-  //               <input
-  //                 className="input"
-  //                 type="text"
-  //                 value={userData.bio}
-  //                 onChange={handleChange}
-  //                 name={'bio'}
-  //               />
-  //             </div>
-  //           </div>
-  //           <div className="field">
-  //             <label className="label mt-3">Languages Spoken</label>
-  //             <div className="control">
-  //               <input
-  //                 className="input"
-  //                 type="text"
-  //                 value={userData.languages_spoken}
-  //                 onChange={handleChange}
-  //                 name={'languages_spoken'}
-  //               />
-  //             </div>
-  //           </div>
-  //           <div className="field">
-  //             <label className="label mt-3">Timezone</label>
-  //             <div className="control">
-  //               <input
-  //                 className="input"
-  //                 type="text"
-  //                 value={userData.time_zone}
-  //                 onChange={handleChange}
-  //                 name={'time_zone'}
-  //               />
-  //             </div>
-  //           </div>
-
-  //           <button className="button is-primary mt-5">Update my details</button>
-
-  //         </div>
-  //       </form>
-
-  //       <button className="button is-danger mt-5" onClick={handleDeleteUser}>Delete my account</button>
-
-  //     </div>
+// const MySelect = ({ label, ...props }) => {
+//   const [field, meta] = useField(props)
+//   return (
+//     <div>
+//       <label htmlFor={props.id || props.name}>{label}</label>
+//       <select {...field} {...props} />
+//       {meta.touched && meta.error ? (
+//         <div className="error">{meta.error}</div>
+//       ) : null}
+//     </div>
+//   )
+// }
 
 
-  //   </div>
-  // </div>
+function UserProfile({ match, params, history }) {
+  const id = match.params.user_id
+  const [userData, updateUserData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    first_name: '',
+    bio: '',
+    time_zone: '',
+    languages_spoken: ''
+  })
+
+  const [userDataLoading, updateUserDataLoading] = useState(true)
+
+  const [error, updateError] = useState('')
+  const [errorState, updateErrorState] = useState(false)
+  const [formSuccess, updateFormSuccess] = useState(false)
+
+  const token = localStorage.getItem('token')
+
+  function getUser() {
+  
+    axios.get(`/api/profile/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(({ data }) => {
+
+        updateUserData(data)
+        updateUserDataLoading(false)
+
+      })
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+
+  function handleChange(event) {
+    const { name, value } = event.target
+    updateUserData({ ...userData, [name]: value })
+  }
+
+  function handleDeleteUser(event) {
+    event.preventDefault()
+
+    try {
+      axios.delete(`/api/profile/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(resp => {
+          history.push('/')
+        })
+
+    } catch (err) {
+      updateErrorState(true)
+      updateError(err.response.data.message)
+      updateFormSuccess(false)
+    }
+  }
+  return (
+    <>
+
+      <Formik
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+          first_name: '',
+          bio: '',
+          time_zone: '',
+          languages_spoken: ''
+        }}
+
+        validationScheme={Yup.object({
+          username: Yup.string()
+            .min(3, 'Username must be at least 3 characters')
+            .required('Required'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+          password: Yup.string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Required'),
+          first_name: Yup.string()
+            .required('Required'),
+          bio: Yup.string()
+            .max(250, 'Must be 250 characters or less')
+            .required('Required'),
+          time_zone: Yup.string()
+            .min(3, 'Please use the three-character abbreviation')
+          // languages_spoken: Yup.string()
+          //   .oneOf(
+          //     ['Arabic', 'English', 'French', 'Hebrew', 'Mandarin', 'Spanish'],
+          //     'Invalid language'
+          //   )
+          //   .required('Required')
+        })}
+
+        //make async
+        onSubmit={async (values, { setSubmitting }) => {
+          const { data } = await axios.put(`/api/profile/${userData.id}`, {
+
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            first_name: values.first_name,
+            bio: values.bio,
+            time_zone: values.time_zone
+          })
+
+          history.push('/search')
+
+          setTimeout(() => {
+            // alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+          }, 400)
+        }}
+      >
+
+        <section className="form-container brandfont">
+          <Form>
+            <p className="title">Edit Profile</p>
+
+            <div className="field">
+              <MyTextInput
+                label="First Name"
+                name="first_name"
+                type="text"
+                
+                className="input"
+                onChange={handleChange}
+                value={userData.first_name}
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Username"
+                name="username"
+                type="text"
+                placeholder="PenelopeC1982"
+                className="input"
+                onChange={handleChange}
+                value={userData.username}
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Email Address"
+                name="email"
+                type="email"
+                placeholder="penelope@gmail.com"
+                className="input"
+                onChange={handleChange}
+                value={userData.email}
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="******"
+                className="input"
+                onChange={handleChange}
+                value={userData.password}
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Biography"
+                name="bio"
+                type="text"
+                placeholder="Hi! I'm Penelope. I am from the United States and am a native English and Spanish speaker. I like movies, dogs and cooking."
+                className="input"
+                onChange={handleChange}
+                value={userData.bio}
+              />
+            </div>
+
+            <div className="field">
+              <MyTextInput
+                label="Time Zone"
+                name="time_zone"
+                type="text"
+                placeholder="EST"
+                className="input"
+                onChange={handleChange}
+                value={userData.time_zone}
+              />
+            </div>
+
+            <button type="submit" className="brandfont">Submit</button>
+            <button className="button is-danger mt-5" onClick={handleDeleteUser}>Delete my account</button>
+          </Form>
+        </section>
+      </Formik>
+
+
+
+    </>
+  )
+
 
 }
+
+export default UserProfile

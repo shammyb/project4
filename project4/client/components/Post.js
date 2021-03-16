@@ -93,9 +93,9 @@ function Post({ match }) {
           <div>
             <div>
               <div className="box is-centered post-info">
-                <h2 className="title is-2" id='olive-green-text'>Share your experiences with {post.user.username} </h2>
+                <h2 className="title is-2 brandfont" id='olive-green-text'>Share your experiences with {post.user.username} </h2>
                 <div className="column">
-                  <div className="is-multiline is-centered">
+                  <div className="is-multiline is-centered" margin='0 auto'>
                     {
                       post.post_comments && post.post_comments.map((commenting, index) => {
                         return <article key={index} className="media">

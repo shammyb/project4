@@ -10,7 +10,7 @@ class Post(db.Model, BaseModel):
 
     __tablename__ = "posts"
 
-    title = db.Column(db.Text, nullable=True)
+    title = db.Column(db.Text, nullable=False)
     level = db.Column(db.Integer, nullable=False)
     dialect = db.Column(db.Text, nullable=True)
     is_offer = db.Column(db.Boolean, nullable=False)

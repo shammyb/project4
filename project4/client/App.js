@@ -46,10 +46,10 @@ const App = () => (
       <Route exact path="/post/:post_id" component={Post} />
       <Route exact path="/form" component={NewForm} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/updatepost" component={UpdatePost} />
+      <Route exact path="/updatepost/:post_id" component={UpdatePost} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/search" component={Search} />
-      <Route exact path="/userprofile" component={UserProfile} />
+      <Route exact path="/profile/:user_id" component={UserProfile} />
     </Switch>
     <Footer />
   </BrowserRouter>

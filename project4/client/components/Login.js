@@ -23,7 +23,6 @@ function Login({ history }) {
 
   return (
     <>
-      <h1>Login</h1>
 
       <Formik
         initialValues={{
@@ -51,24 +50,35 @@ function Login({ history }) {
         }}
       >
 
-        <Form>
-          <MyTextInput
-            label="Email Address"
-            name="email"
-            type="email"
-            placeholder="penelope@gmail.com"
-          />
+        <div className="form-container brandfont">
+          <Form>
+            <p className="title">Login</p>
 
-          <MyTextInput
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="******"
-          />
+            <div className="field">
+              <MyTextInput
+                label="Email Address"
+                name="email"
+                type="email"
+                placeholder="penelope@gmail.com"
+                className="input"
+              />
+            </div>
 
-          <button type="submit">Submit</button>
+            <div className="field">
+              <MyTextInput
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="******"
+                className="input"
+              />
+            </div>
 
-        </Form>
+            <button type="submit" className="brandfont">Submit</button>
+
+          </Form>
+        </div>
+
       </Formik>
     </>
   )
