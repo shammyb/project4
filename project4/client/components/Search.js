@@ -6,6 +6,8 @@ function Search() {
   const [posts, updatePosts] = useState([])
   const [loading, updateLoading] = useState(true)
   const [apiUrl, setApiUrl] = useState('/api/posts')
+  const [tof, setTof] = useState('all')
+  const [option, setOption] = useState([])
   useEffect(() => {
     async function fetchPosts() {
       try {
@@ -19,22 +21,38 @@ function Search() {
     fetchPosts()
   }, [apiUrl])
 
-  // const filteredPosts = posts.filter(
-  //   post =>
-  //     post.isOffer &&
-  //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
-  // )
+  
+
+  function getStudents() {
+    return posts.filter(student => student.is_offer !== true)
+
+  }
+  function getTeachers() {
+    return posts.filter(student => student.is_offer === true)
+  }
 
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
     </>
   }
-
+  function filtering(tof) {
+    if (tof === 'teachers') {
+      
+      setOption(getTeachers())
+      
+    } else if (tof === 'students') {
+      
+      setOption(getStudents())
+    } else {
+      
+      setOption(posts)
+    }
+  }
   return <div className='hero mb-4 home'>
     <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => { 
+      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => {
         setApiUrl(`/api/posts/language/${event.target.value}`)
       }}>
         <option value='1'>English</option>
@@ -44,16 +62,21 @@ function Search() {
         <option value='5'>Mandarin</option>
         <option value='6'>Hebrew</option>
       </select>
-      <select className='dropdown is-hoverable is-centered ml-1'>
-        <option>Looking for Teacher</option>
-        <option>Looking for a student</option>
+      <select className='dropdown is-hoverable is-centered ml-1'onChange={(e) => {
+        setTof(e.target.value)
+      }}>
+        <option value='all'>Teachers and student requests</option>
+        <option value='teachers'>Looking for Teacher</option>
+        <option value='students'>Looking for a student</option>
       </select>
       <div className="control ml-2">
-      <input className="input is-primary" type="text" placeholder="Level 1, 2 or 3" />
+        <input className="input is-primary" type="text" placeholder="Level 1, 2 or 3" />
       </div>
     </div>
+    <button onClick = {() => filtering(tof)}>submit</button>
     <div className='container'>
-      {posts.map((post) => {
+
+      {option.map((post) => {
         return <Link key={post.id} to={`/post/${post.id}`}>
           <div className="card rows mt-4 p-3">
 
@@ -66,7 +89,7 @@ function Search() {
       })
       }
     </ div>
-  </div>
+  </div >
 
 
 }

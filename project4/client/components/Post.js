@@ -11,6 +11,8 @@ function Post({ match }) {
   const [post, updatePost] = useState([])
   const [loading, updateLoading] = useState(true)
   const loggedIn = getLoggedInUserId()
+  const [editNumber, updateEditNumber] = useState(0)
+  const [commentIdentifier, updateCommentIdentifier] = useState('')
 
   //const [error, updateError] = useState(false)
 
@@ -53,13 +55,40 @@ function Post({ match }) {
         updatePost(resp.data)
       })
   }
-  // function handleEditCommentOne(commentId){
-  //   if (!isCreator) {
-  //     return null
-  //   }
+  function handleEditCommentOne(commentId) {
+    if (!isCreator) {
+      return null
+    }
+    for (let i = 0; i < post.post_comments.length; i++) {
+      if ((post.post_comments[i].id) === commentId) {
+        setComment(post.post_comments[i].content)
 
-  // }
+      }
+    }
 
+    updateEditNumber(1)
+    updateCommentIdentifier(commentId)
+  }
+  async function handleEditCommentTwo() {
+    if (!isCreator) {
+      return null
+    }
+    await axios.put(`/api/posts/${id}/comments/${commentIdentifier}`, { content }, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    updateEditNumber(0)
+    setComment('')
+    updateCommentIdentifier('')
+    fetchData()
+
+  }
+  // await axios.post(`/api/posts/${id}/comments`, { content }, {
+  //   headers: { Authorization: `Bearer ${token}` }
+  // })
+
+  // setComment('')
+  // fetchData()
 
   if (loading) {
     return <>
@@ -112,12 +141,12 @@ function Post({ match }) {
                               Delete
                             </button>
                           </div>}
-                          {/* {isCreator(commenting.user._id) && <div className="media-right">
+                          {isCreator(commenting.user.id) && <div className="media-right">
                             <button
                               className="button is-light"
-                              onClick={() => handleEditCommentOne(commenting._id)}>Update
+                              onClick={() => handleEditCommentOne(commenting.id)}>Update
                             </button>
-                          </div>} */}
+                          </div>}
                         </article>
                       })
                     }
@@ -139,19 +168,18 @@ function Post({ match }) {
                         </div>
                         <div className="field">
                           <p className="control">
-                            {/* editNumber === 0 &&  */}
-                            <button
+                            {editNumber === 0 && <button
                               onClick={handleComment}
                               className="button is-info"
                             >
                               Submit
-                            </button>
-                            {/* {editNumber === 1 && <button
+                            </button>}
+                            {editNumber === 1 && <button
                               onClick={handleEditCommentTwo}
                               className="button is-info"
                             >
                               Update Comment
-                            </button>} */}
+                            </button>}
                           </p>
                         </div>
                       </div>
