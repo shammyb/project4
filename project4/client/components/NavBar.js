@@ -36,15 +36,16 @@ function Navbar({ history }) {
         </Link>
       </div>
     </div>
-    <div className="navbar-end">
 
-      {loggedInUser._id &&
+
+    <div className="navbar-end">
+      {loggedInUser.id &&
         <div className="navbar-item">
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link"></a>
 
             <div className="navbar-dropdown">
-              <p className="navbar-item tag">{loggedInUser.first_name}</p>
+              <p className="navbar-item tag">Hello {loggedInUser.first_name}</p>
               {/* <Link className="navbar-item" to={`/profile/${loggedInUser._id}`}>
                 Profile
               </Link> */}
@@ -61,7 +62,7 @@ function Navbar({ history }) {
             <Link className="button is-light" to={'/signup'}>
               <strong>Sign up</strong>
             </Link>}
-          {loggedInUser._id &&
+          {loggedInUser.id &&
             <button className="button is-warning" onClick={logout}>Sign Out</button>}
         </div>
       </div>

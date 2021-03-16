@@ -1,7 +1,5 @@
 from models.user import User
 
-
-
 list_users = [
     User(
         username='katherine', 
@@ -9,9 +7,7 @@ list_users = [
         email='katherine@katherine.com',
         bio='I\'m Katherine and I\'m from Alabama. I\'d like to learn Arabic in exchange for English!',
         first_name="Katherine",
-        time_zone="CET",
-        languages_spoken= "spanish, mandarin"
-        # languages_spoken = [languages[4].lang_name, languages[1].lang_name],
+        time_zone="CET"
         ),
 
     User(
@@ -20,9 +16,7 @@ list_users = [
         email='emily@emily.com',
         bio='I am Emily',
         first_name="Emily",
-        time_zone="GMT",
-        languages_spoken="French, Arabic"
-        # languages_spoken = [languages[3].lang_name, languages[2].lang_name],
+        time_zone="GMT"
         ),
 
     User(
@@ -31,10 +25,6 @@ list_users = [
         email='benjani@benjani.com',
         bio='heyyyyyyyyy',
         first_name='Benjani',
-        time_zone='GMT',
-        languages_spoken="Hebrew, English"
-        # languages_spoken = [languages[0].lang_name, languages[5].lang_name],
-
-
+        time_zone='GMT'
         )
 ]
