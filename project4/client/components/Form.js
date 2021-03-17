@@ -102,9 +102,9 @@ function NewForm({ history }) {
             language_id: values.language_id
 
           },
-          {
-            headers: { Authorization: `Bearer ${token}` }
-          })
+            {
+              headers: { Authorization: `Bearer ${token}` }
+            })
 
           history.push('/search')
 
@@ -199,53 +199,53 @@ function NewForm({ history }) {
               type="submit"
               className="button is-warning brandfont"
             >Submit</button>
-
+            
           </Form>
+          <section>
+            <div className="form-instructions">
+              <h1>How to fill out this form:</h1>
 
-          <div className="form-instructions">
-            <h1>How to fill out this form:</h1>
+              <div className="form-instruction">
+                <ul>Fields marked with * are required</ul>
+              </div>
 
-            <div className="form-instruction">
-              <ul>Fields marked with * are required</ul>
+              <div className="form-instruction">
+                <ul>Title</ul>
+                <li>Write a short description of what you are looking for. This will be the first thing potential students/teachers see!</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Checkbox</ul>
+                <li>If you are offering your services as a teacher, check this box so that you're information can be properly filtered</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Language</ul>
+                <li>What language you wish to learn/teach</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Level</ul>
+                <li>If you are offering your services as a teacher, please choose the level you feel most comfortable teaching</li>
+                <li>If you are looking to learn, please choose which level you would like to start at</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Dialect</ul>
+                <li>Have a particular dialect in mind? Include it here</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Availability</ul>
+                <li>When do you have time for class? Be as specific as you can!</li>
+              </div>
+
+              <div className="form-instruction">
+                <ul>Description</ul>
+                <li>Is there any additional pertinent information you want to add? Include it here!</li>
+              </div>
             </div>
-
-            <div className="form-instruction">
-              <ul>Title</ul>
-              <li>Write a short description of what you are looking for. This will be the first thing potential students/teachers see!</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Checkbox</ul>
-              <li>If you are offering your services as a teacher, check this box so that you're information can be properly filtered</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Language</ul>
-              <li>What language you wish to learn/teach</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Level</ul>
-              <li>If you are offering your services as a teacher, please choose the level you feel most comfortable teaching</li>
-              <li>If you are looking to learn, please choose which level you would like to start at</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Dialect</ul>
-              <li>Have a particular dialect in mind? Include it here</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Availability</ul>
-              <li>When do you have time for class? Be as specific as you can!</li>
-            </div>
-
-            <div className="form-instruction">
-              <ul>Description</ul>
-              <li>Is there any additional pertinent information you want to add? Include it here!</li>
-            </div>
-          </div>
-
+          </section>
 
         </section>
       </Formik>

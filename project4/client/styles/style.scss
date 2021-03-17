@@ -181,15 +181,24 @@ ul {
 }
 
 #dropdown-menu {
-  height: 30px;
+  height: 32px;
   padding: 5px;
   background-color: $olive-green;
   color: white;
   font-weight: bold;
+  font-size: 15px;
 }
 #gold-text{
   color:#CA910D;
 }
 #olive-background{
   background-color: $olive-green;
+}
+#our-info-box{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#creator-info{
+  width: 300px;
 }

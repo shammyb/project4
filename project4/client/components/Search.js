@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Paginate from './Paginate'
 
 function Search() {
+  const resultsPerPage = 10
+  const [pageNum, updatePageNum] = useState(1)
   const [posts, updatePosts] = useState([])
   const [loading, updateLoading] = useState(true)
   const [level, updateLevel] = useState('')
@@ -50,6 +53,9 @@ function Search() {
       setOption(posts)
     }
   }
+  // function handlePageChange(newValue) {
+  //   updatePageNum(newValue)
+  // }
   return <div className='hero mb-4 pb-4 home'>
     <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <h2 className='is-size-4 mt-4 ml-4 has-text-centered has-text-white'>Find new international teachers and students today!</h2>
@@ -83,9 +89,12 @@ function Search() {
       </select>
     </div>
     <button className='button is-warning brandfont' id='search-button' onClick={() => filtering(tof)}>Search</button>
+    
+        
     <div className='container'>
-
+ 
       {option.map((post) => {
+       
         return <Link key={post.id} to={`/post/${post.id}`}>
           <div className="card rows mt-4 p-3">
 
@@ -99,7 +108,11 @@ function Search() {
         </Link>
       })
       }
+      
+
+     
     </ div>
+    
   </div >
 
 

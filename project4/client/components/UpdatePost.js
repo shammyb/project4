@@ -49,6 +49,7 @@ const MySelect = ({ label, ...props }) => {
 function UpdatePost({ history, match }) {
   const token = localStorage.getItem('token')
   const [error, updateError] = useState('')
+  const [formSuccess, updateFormSuccess] = useState(false)
   const [errorState, updateErrorState] = useState(false)
   const id = match.params.post_id
   const [ownerId, updateOwnerId] = useState('')
@@ -98,12 +99,12 @@ function UpdatePost({ history, match }) {
       axios.delete(`/api/posts/${post.id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
+      
         .then(resp => {
           history.push('/search')
         })
 
     } catch (err) {
-      updateErrorState(true)
       
       
     }
@@ -266,7 +267,7 @@ function UpdatePost({ history, match }) {
             >Submit</button>
 
             <button className="button is-danger mt-5" onClick={handleDeletePost}>Delete Post</button>
-
+            
           </Form>
 
           <div className="form-instructions">

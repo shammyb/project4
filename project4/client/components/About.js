@@ -20,22 +20,25 @@ function About() {
       <div className="box article">
         <div className="box-content">
           <div className="content article-body">
-            <p>We are three General Assembly Students completing this for our final project for the Software Engineering Immersive Course. </p>
-            <div className='container is-centered' margin='0 auto'>
-              <div className='card'>
-                Benjamin Shamash
-                (linkedin)
-                (github)
+            <p>We are three General Assembly Students completing this for our final project for the Software Engineering Immersive Course. We completed this website as our fourth adn final project on our course. Using a flask backend and React frontend, we are very proud of the website we created. Please look at our Linkedins and Githubs for examples of our other projects!</p>
+            <div className='box is-centered' id='our-info-box' margin='0 auto'>
+              <div className='card pt-4' id='creator-info'>
+                <h4 id='olive-green-text'>Benjamin Shamash </h4>
+                <a href='https://www.linkedin.com/in/benjamin-shamash-4a93b9112/'>LinkedIn</a>  
+                <br />
+                <a href='https://github.com/shammyb'>Github</a>  
               </div>
-              <div className='card'>
-                Katherine Herbert
-                (linkedin)
-                (github)
+              <div className='card pt-4' id='creator-info'>
+              <h4 id='olive-green-text'>Katherine Herbert </h4>
+                <a href='https://www.linkedin.com/in/katherinekherbert/'>LinkedIn</a>  
+                <br />
+                <a href='https://github.com/kkherbert'>Github</a> 
               </div>
-              <div className='card'>
-                Emily Kulesa
-                (linkedin)
-                (github)
+              <div className='card pt-4' id='creator-info'>
+              <h4 id='olive-green-text'>Emily Kulesa </h4>
+                <a href='https://www.linkedin.com/in/eekulesa/'>LinkedIn</a>  
+                <br />
+                <a href='https://github.com/emilieeileen'>Github</a> 
               </div>
 
             </div>
