@@ -84,6 +84,7 @@ function UserProfile({ match, params, history }) {
     <>
 
       <Formik
+        enableReinitialize={true}
         initialValues={userData}
 
         validationScheme={Yup.object({

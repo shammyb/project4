@@ -99,31 +99,31 @@ function Post({ match }) {
     <div className='px-6 pt-6 pb-6 mb-3'>
       <div className='columns'>
         <div className='column'>
-        <div className='box is-centered post-info'>
-          <h2 className='title brandfont is-size-3 mb-1 mt-4' id='olive-green-text'>{post.title}</h2>
-          <br />
-          <h5 className='brandfont pb-3'><span id='olive-green-text'>Level:</span> {post.level} </h5>
-          
-          <h5 className='brandfont pb-3'><span id='olive-green-text'>Dialect:</span> {post.dialect}</h5>
-          <p className='brandfont pb-3'><span id='olive-green-text'>Description:</span> {post.description}</p>
+          <div className='box is-centered post-info'>
+            <h2 className='title brandfont is-size-3 mb-1 mt-4' id='olive-green-text'>{post.title}</h2>
+            <br />
+            <h5 className='brandfont pb-3'><span id='olive-green-text'>Level:</span> {post.level} </h5>
 
-          <p className='brandfont pb-3'><span id='olive-green-text'>Availability:</span> {post.availability}</p>
-          <div className='box px-6 pt-5 pb-3 mt-4 text-is-centered meet-user' id='olive-background'>
-            <h4 className='title brandfont' id='gold-text'>Meet {post.user.first_name}</h4>
-            <p className='brandfont has-text-white'>{post.user.bio}</p>
-            <br />
-            <p className='brandfont has-text-white'>Timezone: {post.user.time_zone}</p>
-            <br />
-            <p className='brandfont has-text-white'>(Remember to consider your time differences when planning lessons!)</p>
-            <br />
-            {isCreator(post.user.id) ?
-            <Link className='button mb-4 is-warning' to={`/updatepost/${post.id}`}>Edit post</Link>
-            :
-            <a className='button mb-4 is-warning' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
-          }
+            <h5 className='brandfont pb-3'><span id='olive-green-text'>Dialect:</span> {post.dialect}</h5>
+            <p className='brandfont pb-3'><span id='olive-green-text'>Description:</span> {post.description}</p>
+
+            <p className='brandfont pb-3'><span id='olive-green-text'>Availability:</span> {post.availability}</p>
+            <div className='box px-6 pt-5 pb-3 mt-4 text-is-centered meet-user' id='olive-background'>
+              <h4 className='title brandfont' id='gold-text'>Meet {post.user.first_name}</h4>
+              <p className='brandfont has-text-white'>{post.user.bio}</p>
+              <br />
+              <p className='brandfont has-text-white'>Timezone: {post.user.time_zone}</p>
+              <br />
+              <p className='brandfont has-text-white'>(Remember to consider your time differences when planning lessons!)</p>
+              <br />
+              {isCreator(post.user.id) ?
+                <Link className='button mb-4 is-warning' to={`/updatepost/${post.id}`}>Edit post</Link>
+                :
+                <a className='button mb-4 is-warning' href={`mailto:${post.user.email}`}> Contact {post.user.first_name} </a>
+              }
+            </div>
           </div>
-          </div>
-      
+
           <div>
             <div>
               <div className="box is-centered post-info">
@@ -178,7 +178,7 @@ function Post({ match }) {
                             {editNumber === 0 && <button
                               onClick={handleComment}
                               className="button is-warning"
-                              
+
                             >
                               Submit
                             </button>}
