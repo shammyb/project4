@@ -197,7 +197,7 @@ function NewForm({ history }) {
 
             <button
               type="submit"
-              className="brandfont"
+              className="button is-warning brandfont"
             >Submit</button>
 
           </Form>
