@@ -43,7 +43,7 @@ function About() {
 
             </div>
             <h3 className="has-text-centered">Technologies Used</h3>
-            <ul>
+            <ul className="column is-centered">
               <li>HTML</li>
               <li>SCSS</li>
               <li>Python</li>

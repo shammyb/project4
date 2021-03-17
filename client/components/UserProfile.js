@@ -21,9 +21,7 @@ const MyTextInput = ({ label, ...props }) => {
 
 
 
-
 function UserProfile({ match, params, history }) {
-  const [posts, updatePosts] = useState([])
   const id = match.params.user_id
   const [userData, updateUserData] = useState({
     username: '',
@@ -44,7 +42,7 @@ function UserProfile({ match, params, history }) {
   const token = localStorage.getItem('token')
 
   function getUser() {
-
+  
     axios.get(`/api/profile/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -82,20 +80,6 @@ function UserProfile({ match, params, history }) {
       updateFormSuccess(false)
     }
   }
-  // async function fetchPosts() {
-  //   try {
-  //     const { data } = await axios.get(apiUrl)
-  //     updatePosts(data)
-
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  //   console.log(posts)
-  // }
-  // function getUserPosts(){
-  //   fetchPosts()
-
-  // }
   return (
     <>
 
@@ -109,6 +93,9 @@ function UserProfile({ match, params, history }) {
             .required('Required'),
           email: Yup.string()
             .email('Invalid email address')
+            .required('Required'),
+          password: Yup.string()
+            .min(6, 'Password must be at least 6 characters')
             .required('Required'),
           first_name: Yup.string()
             .required('Required'),
@@ -127,37 +114,24 @@ function UserProfile({ match, params, history }) {
 
         //make async
         onSubmit={async (values, { setSubmitting }) => {
-          console.log(id)
-          console.log({
-            'username': userData.username,
-            'email': userData.email,
-            'first_name': userData.first_name,
-            'password': userData.password,
-            'bio': userData.bio,
-            'time_zone': userData.time_zone
-          }, { headers: { Authorization: `Bearer ${token}` } })
-          try {
-            await axios.put(`/api/profile/${id}`,
+          const { data } = await axios.put(`/api/profile/${id}`, 
+          { headers: { Authorization: `Bearer ${token}` } },
+          {
 
-              {
-                'username': userData.username,
-                'email': userData.email,
-                'first_name': userData.first_name,
-                'bio': userData.bio,
-                'time_zone': userData.time_zone
-              }, { headers: { Authorization: `Bearer ${token}` } })
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            first_name: values.first_name,
+            bio: values.bio,
+            time_zone: values.time_zone
+          })
 
-            history.push('/search')
-            console.log(values, 'woooooo')
-            setTimeout(() => {
-              // alert(JSON.stringify(values, null, 2))
-              setSubmitting(false)
-            }, 400)
-          }
-          catch (err) {
-            console.log('aaaaaaa')
-            console.log(err)
-          }
+          history.push('/search')
+          console.log(values, 'woooooo')
+          setTimeout(() => {
+            // alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+          }, 400)
         }}
       >
 
@@ -170,7 +144,7 @@ function UserProfile({ match, params, history }) {
                 label="First Name"
                 name="first_name"
                 type="text"
-
+                
                 className="input"
                 onChange={handleChange}
                 value={userData.first_name}
@@ -201,7 +175,6 @@ function UserProfile({ match, params, history }) {
               />
             </div>
 
-            
             <div className="field">
               <MyTextInput
                 label="Password"
@@ -213,7 +186,6 @@ function UserProfile({ match, params, history }) {
                 value={userData.password}
               />
             </div>
-
 
             <div className="field">
               <MyTextInput

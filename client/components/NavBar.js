@@ -43,6 +43,11 @@ function Navbar({ history }) {
     </div>
       }
       {loggedInUser.id &&
+      <div className='navbar-item has-text-secondary'>
+      <p className="navbar-item"><Link className='has-link-black is-link' to={`/myposts/${loggedInUser.id}`}>My Posts</Link></p>
+    </div>
+      }
+      {loggedInUser.id &&
         <div className='navbar-item has-text-secondary'>
           <p className="navbar-item"><Link className="has-link-black is-link" to={`/profile/${loggedInUser.id}`}>Hello {loggedInUser.first_name}</Link></p>
         </div>
