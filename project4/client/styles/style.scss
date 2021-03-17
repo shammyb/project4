@@ -117,16 +117,16 @@ label, ul {
 }
 
 button {
-  
   height: 20%;
 }
 
 
 .form-instructions {
-  // border: 5px solid orange;
+  border: 5px solid orange;
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -135,7 +135,10 @@ button {
   padding: 2%;
 }
 
-
+.new-post-title {
+  // border: 5px solid rgb(158, 154, 155);
+  margin: 2%;
+}
 
 h1 {
   color: rgba(71, 104, 41, 1);

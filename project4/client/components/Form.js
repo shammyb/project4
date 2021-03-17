@@ -119,7 +119,11 @@ function NewForm({ history }) {
 
         <section className="form-container brandfont">
           <Form>
-            <p className="title">Make a new post</p>
+
+            <div className="new-post-title">
+              <p className="title">Make a new post</p>
+              <p>Fields marked with * are required</p>
+            </div>
 
             <div className="field">
               <MyTextInput
@@ -204,10 +208,6 @@ function NewForm({ history }) {
           <section className="lc-form">
             <div className="form-instructions">
               <h1>How to fill out this form:</h1>
-
-              <div className="form-instruction">
-                <ul>Fields marked with * are required</ul>
-              </div>
 
               <div className="form-instruction">
                 <ul>Title</ul>
