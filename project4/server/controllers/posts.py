@@ -123,13 +123,12 @@ def remove_post(post_id):
 @secure_route
 def create_comment(post_id):
     comment_dictionary = request.json
-    print(comment_dictionary)
+    
 
     post = Post.query.get(post_id)
     user = g.current_user
 
-    print(user)
-    print(type(user))
+   
     try:
         comment = comment_schema.load(comment_dictionary)
         comment.post = post
@@ -148,6 +147,9 @@ def create_comment(post_id):
 def update_comment(post_id, comment_id):
 
     comment_dictionary = request.json
+
+    print(comment_dictionary)
+    
     existing_comment = Comment.query.get(comment_id)
 
     if existing_comment.user != g.current_user:

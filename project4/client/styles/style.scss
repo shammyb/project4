@@ -2,7 +2,9 @@
 
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
+* {
+  font-family: "Montserrat", "arial", sans-serif;
+}
 
 // Set your brand colors
 $olive-green: #4D6A2A;
@@ -37,10 +39,17 @@ nav{
   background: linear-gradient(to right, rgba(71, 104, 41, 1), rgba(88, 144, 42, 1));
   background-position: fixed;
 }
-
+.post-background{
+  background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
+    url("https://i.imgur.com/7TWO0eu.jpg");
+}
+.box{
+  margin: 0 auto;
+  text-align: center;
+}
 .home {
   background: linear-gradient(rgba(10, 60, 70, 0.3), rgba(10, 60, 70, 0.3)),
-    url("https://images.pexels.com/photos/269633/pexels-photo-269633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    url("https://i.imgur.com/Tvys7sG.jpeg");
 }
 .container{
 	display: grid;
@@ -108,16 +117,16 @@ label, ul {
 }
 
 button {
-  width: 30%;
   height: 20%;
 }
 
 
 .form-instructions {
-  // border: 5px solid orange;
+  border: 5px solid orange;
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -125,7 +134,10 @@ button {
   padding: 2%;
 }
 
-
+.new-post-title {
+  // border: 5px solid rgb(158, 154, 155);
+  margin: 2%;
+}
 
 h1 {
   color: rgba(71, 104, 41, 1);
@@ -139,4 +151,57 @@ h1 {
 #olive-green-button{
   background-color:$olive-green;
   color:white;
+}
+.card{
+  min-height: 200px;
+  max-height: 200px;
+}
+.card:hover{
+  background-color:#CA910D;
+}
+#card-info{
+  position: absolute;
+  bottom: 0;
+  margin-left: 20%;
+  padding-bottom: 10px;
+}
+.post-info{
+  max-width: 600px;
+}
+.meet-user{
+  max-width: 400px;
+}
+ul {
+  max-width: 100px;
+  text-align: center;
+}
+.center-text{
+  margin: 0 auto;
+}
+#search-button{
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+#dropdown-menu {
+  height: 32px;
+  padding: 5px;
+  background-color: $olive-green;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+#gold-text{
+  color:#CA910D;
+}
+#olive-background{
+  background-color: $olive-green;
+}
+#our-info-box{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#creator-info{
+  width: 300px;
 }
