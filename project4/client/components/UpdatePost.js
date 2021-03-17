@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 // import ReactDOM from 'react-dom'
 import { Formik, Form, useField } from 'formik'
 import * as Yup from 'yup'
@@ -49,6 +49,7 @@ const MySelect = ({ label, ...props }) => {
 function UpdatePost({ history, match }) {
   const token = localStorage.getItem('token')
   const [error, updateError] = useState('')
+  const [formSuccess, updateFormSuccess] = useState(false)
   const [errorState, updateErrorState] = useState(false)
   const id = match.params.post_id
   const [ownerId, updateOwnerId] = useState('')
@@ -98,21 +99,21 @@ function UpdatePost({ history, match }) {
       axios.delete(`/api/posts/${post.id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
+
         .then(resp => {
           history.push('/search')
         })
 
     } catch (err) {
-      updateErrorState(true)
-      
-      
+
+
     }
   }
   return (
     <>
 
       <Formik
-      enableReinitialize={true}
+        enableReinitialize={true}
         initialValues={formData}
 
         validationScheme={Yup.object({
@@ -154,9 +155,9 @@ function UpdatePost({ history, match }) {
             language_id: values.language_id
 
           },
-            {
-              headers: { Authorization: `Bearer ${token}` }
-            })
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          })
 
           history.push('/search')
 
@@ -271,10 +272,6 @@ function UpdatePost({ history, match }) {
 
           <div className="form-instructions">
             <h1>How to fill out this form:</h1>
-
-            <div className="form-instruction">
-              <ul>Fields marked with * are required</ul>
-            </div>
 
             <div className="form-instruction">
               <ul>Title</ul>

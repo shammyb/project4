@@ -174,7 +174,7 @@ function SignUp({ history }) {
               />
             </div>
 
-            <button type="submit" className="brandfont">Submit</button>
+            <button type="submit" className="brandfont is-warning">Submit</button>
 
           </Form>
         </section>
