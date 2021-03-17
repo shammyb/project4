@@ -25,7 +25,7 @@ function Search() {
   //     post.isOffer &&
   //     country.region.toLowerCase().includes(region.toLocaleLowerCase())
   // )
-  
+
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
@@ -35,22 +35,24 @@ function Search() {
   return <div className='hero mb-4 home'>
     <h1 className='title brandfont is-size-2 mt-4 ml-4 has-text-centered has-text-white'>Posts</h1>
     <div className='columns is-mobile is-centered'>
-      <select className='dropdown is-hoverable is-centered mr-1' onChange={(event) => { 
-        setApiUrl(`/api/posts/language/${event.target.value}`)
+      <select className='dropdown is-hoverable is-centered mr-1 brandfont' id='dropdown-menu' onChange={(event) => {
+        setApiUrl(`${event.target.value}`)
       }}>
-        <option value='1'>English</option>
-        <option value='2'>Spanish</option>
-        <option value='3'>French</option>
-        <option value='4'>Arabic</option>
-        <option value='5'>Mandarin</option>
-        <option value='6'>Hebrew</option>
+        <option value='/api/posts'>All Languages</option>
+        <option value='/api/posts/language/1'>English</option>
+        <option value='/api/posts/language/2'>Spanish</option>
+        <option value='/api/posts/language/3'>French</option>
+        <option value='/api/posts/language/4'>Arabic</option>
+        <option value='/api/posts/language/5'>Mandarin</option>
+        <option value='/api/posts/language/6'>Hebrew</option>
       </select>
       <select className='dropdown is-hoverable is-centered ml-1'>
         <option>Looking for Teacher</option>
         <option>Looking for a student</option>
       </select>
       <select className='dropdown is-hoverable is-centered mr-1 ml-1' onChange={(event) => {
-        updateLevel(event.target.value)}}>
+        updateLevel(event.target.value)
+      }}>
         <option value="">Select a level</option>
         <option value="1">Beginner (Level 1)</option>
         <option value="2">Intermediate (Level 2)</option>
