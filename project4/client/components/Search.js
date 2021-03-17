@@ -39,14 +39,10 @@ function Search() {
   }
   function filtering(tof) {
     if (tof === 'teachers') {
-
       setOption(getTeachers())
-
     } else if (tof === 'students') {
-
       setOption(getStudents())
     } else {
-
       setOption(posts)
     }
   }
