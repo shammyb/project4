@@ -199,9 +199,9 @@ function NewForm({ history }) {
               type="submit"
               className="button is-warning brandfont"
             >Submit</button>
-            
+            <br />
           </Form>
-          <section>
+          <section className="lc-form">
             <div className="form-instructions">
               <h1>How to fill out this form:</h1>
 
