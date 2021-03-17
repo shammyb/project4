@@ -36,7 +36,6 @@ function Search() {
         }
       }
       return filteredLevel
-
     }
     return filteredPosts
   }
@@ -49,9 +48,7 @@ function Search() {
           filteredLevel.push(filteredPosts[i])
         }
       }
-      
       return filteredLevel
-
     }
     return filteredPosts
   }
@@ -62,8 +59,8 @@ function Search() {
         if (parseInt(posts[i].level) === level) {
           filteredLevel.push(posts[i])
         }
-        return filteredLevel
       }
+      return filteredLevel
     }
     return posts
   }
