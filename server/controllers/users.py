@@ -53,11 +53,10 @@ def get_user_profile(user_id):
 def update_user(user_id):
     existing_user = User.query.get(user_id)
     user_update = request.json
-    print(user_update['username'])
-    # if existing_user.user != g.current_user:
-    #      return {'errors': 'User can only be edited by the creator!'}, 402
-    if ((user_update['username'] == '') or (user_update['email'] == '') or (user_update['bio'] == '') or (user_update['first_name'] == '') or  (user_update['time_zone'] == '')):
-        return {"messages": "Something went wrong"}
+    print(user_update)
+    # if ((user_update['username'] == '') or (user_update['email'] == '') or (user_update['bio'] == '') or (user_update['first_name'] == '') or  (user_update['time_zone'] == '')):
+    #     return {"messages": "Something went wrong"}
+    
     try:
         user = user_schema.load(
             user_update,

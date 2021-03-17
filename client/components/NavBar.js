@@ -21,7 +21,7 @@ function Navbar({ history }) {
     } else {
       updateLoggedInUser([])
     }
-  }, 1000)
+  }, 2000)
 
   function logout() {
     history.push('/')
