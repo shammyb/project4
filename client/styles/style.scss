@@ -130,6 +130,7 @@ button {
   text-align: center;
 }
 
+
 .form-instruction {
   padding: 2%;
 }
@@ -174,6 +175,9 @@ h1 {
 ul {
   max-width: 100px;
   text-align: center;
+  margin-left: 25%;
+  display: flex;
+  align-content: center;
 }
 .center-text{
   margin: 0 auto;
@@ -205,3 +209,5 @@ ul {
 #creator-info{
   width: 300px;
 }
+
+

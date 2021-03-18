@@ -21,7 +21,7 @@ function Navbar({ history }) {
     } else {
       updateLoggedInUser([])
     }
-  }, 1000)
+  }, 2000)
 
   function logout() {
     history.push('/')
@@ -40,6 +40,11 @@ function Navbar({ history }) {
       {loggedInUser.id &&
       <div className='navbar-item has-text-secondary'>
       <p className="navbar-item"><Link className='has-link-black is-link' to='/form'>New Post</Link></p>
+    </div>
+      }
+      {loggedInUser.id &&
+      <div className='navbar-item has-text-secondary'>
+      <p className="navbar-item"><Link className='has-link-black is-link' to={`/myposts/${loggedInUser.id}`}>My Posts</Link></p>
     </div>
       }
       {loggedInUser.id &&

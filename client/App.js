@@ -35,6 +35,7 @@ import SignUp from './components/SignUp.js'
 import Search from './components/Search.js'
 import UserProfile from './components/UserProfile.js'
 import Footer from './components/Footer.js'
+import MyPosts from './components/MyPosts.js'
 
 const App = () => (
   <BrowserRouter>
@@ -50,6 +51,7 @@ const App = () => (
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
+      <Route exact path="/myposts/:user_id" component={MyPosts} />
     </Switch>
     <Footer />
   </BrowserRouter>

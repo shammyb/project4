@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Paginate from './Paginate'
-
 function Search() {
   const resultsPerPage = 10
   const [pageNum, updatePageNum] = useState(1)
@@ -24,8 +23,6 @@ function Search() {
     }
     fetchPosts()
   }, [apiUrl])
-
- 
   function getStudents(level) {
     const filteredLevel = []
     const filteredPosts = posts.filter(student => student.is_offer !== true)
@@ -36,7 +33,6 @@ function Search() {
         }
       }
       return filteredLevel
-
     }
     return filteredPosts
   }
@@ -49,9 +45,7 @@ function Search() {
           filteredLevel.push(filteredPosts[i])
         }
       }
-      
       return filteredLevel
-
     }
     return filteredPosts
   }
@@ -62,12 +56,11 @@ function Search() {
         if (parseInt(posts[i].level) === level) {
           filteredLevel.push(posts[i])
         }
-        return filteredLevel
       }
+      return filteredLevel
     }
     return posts
   }
-
   if (loading) {
     return <>
       <h1>Loading posts...</h1>
@@ -119,14 +112,10 @@ function Search() {
     </div>
     <button className='button is-warning brandfont' id='search-button' onClick={() => filtering(tof, level)}>Search</button>
     <div className='container'>
-
       {option.map((post) => {
-
         return <Link key={post.id} to={`/post/${post.id}`}>
           <div className="card rows mt-4 p-3">
-
             <div><h2 className='title is-size-4 brandfont has-text-centered' id='olive-green-text'>{post.title}</h2></div>
-
             <div className='is-centered' id="card-info">
               <h4 className='brandfont has-text-centered'>Level: {post.level}</h4>
               <h5 className='brandfont has-text-centered card-info'>Posted by <span id='olive-green-text'>{post.user.username}</span></h5>
@@ -135,14 +124,8 @@ function Search() {
         </Link>
       })
       }
-
-
-
     </ div>
-
   </div >
-
-
 }
 
 export default Search
