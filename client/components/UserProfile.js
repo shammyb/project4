@@ -114,26 +114,38 @@ function UserProfile({ match, params, history }) {
 
         //make async
         onSubmit={async (values, { setSubmitting }) => {
-          const { data } = await axios.put(`/api/profile/${id}`, 
-          { headers: { Authorization: `Bearer ${token}` } },
-          {
-
-            username: values.username,
-            email: values.email,
-            password: values.password,
-            first_name: values.first_name,
-            bio: values.bio,
-            time_zone: values.time_zone
-          })
-
-          history.push('/search')
-          console.log(values, 'woooooo')
-          setTimeout(() => {
-            // alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-          }, 400)
+          console.log(id)
+          console.log({
+            'username': userData.username,
+            'email': userData.email,
+            'first_name': userData.first_name,
+            'password': userData.password,
+            'bio': userData.bio,
+            'time_zone': userData.time_zone
+          }, { headers: { Authorization: `Bearer ${token}` } })
+          try {
+            await axios.put(`/api/profile/${id}`,
+              {
+                'username': userData.username,
+                'email': userData.email,
+                'first_name': userData.first_name,
+                'bio': userData.bio,
+                'time_zone': userData.time_zone
+              }, { headers: { Authorization: `Bearer ${token}` } })
+            history.push('/search')
+            console.log(values, 'woooooo')
+            setTimeout(() => {
+              // alert(JSON.stringify(values, null, 2))
+              setSubmitting(false)
+            }, 400)
+          }
+          catch (err) {
+            console.log('aaaaaaa')
+            console.log(err)
+          }
         }}
       >
+
 
         <section className="form-container brandfont">
           <Form>
