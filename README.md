@@ -47,7 +47,8 @@ def get_single_post(post_id):
         return {"message": "Post not found"}, 404
 
     return post_schema.jsonify(post), 200
-    ```
     
+    ```
+  ## The Front End    
 
 
