@@ -12,5 +12,42 @@ Checkout our project here: https://language-connect.herokuapp.com/
          * Have a visually impressive design to kick your portfolio up a notch and have something to wow future clients & employers. ALLOW time for this.
          * Be deployed online so it's publicly accessible
 ```
+## The Backend
+The backend was the most complex part of the project. While our initial plan gave us a good base for creating the back end and the database, there were definitely issues that arose that had us change the plan.
+
+Originally, we intended on having many skills available but to make sure we had a completed MVP, we decided to focus on language learning.
+
+After having some issues with populating the database, we decided to move to a one to many model with the posts. This made the most sense since the users would only have one post per language.
+
+For the controllers, we decided to have multiple endpoints for users to get relevant information. For our site, the main points users would be searching would be posts and languages. To accomplish this we created two different endpoints for getting all posts and getting posts by language like so:
+
+``` Python
+@router.route("/posts/language/<int:query_language_id>", methods=["GET"])
+def get_posts_by_language(query_language_id):
+    post = Post.query.all()
+    lang_post = []
+    for x in post:
+        if x.language_id == query_language_id:
+            print(x.language_id)
+            lang_post.append(x)
+            print(lang_post)    
+    return post_schema.jsonify(lang_post, many=True), 200
+
+@router.route("/posts", methods=["GET"])
+def get_posts():
+    posts = Post.query.all()
+    return post_schema.jsonify(posts, many=True), 200
+
+
+@router.route("/posts/<int:post_id>", methods=["GET"])
+def get_single_post(post_id):
+    post = Post.query.get(post_id)
+    
+    if not post:
+        return {"message": "Post not found"}, 404
+
+    return post_schema.jsonify(post), 200
+    ```
+    
 
 
