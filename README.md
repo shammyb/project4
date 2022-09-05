@@ -56,7 +56,7 @@ My role and main focus for this project was the functionality of it. Therefore i
 
 ### Filtering
 
-The API we created can search for posts by language. I put the axios request inside a use effect so everytime the selected language changes, an axios request will be made with the new URL. From there i created three functions all of which get posts by level. They are teachers, students and the default, all posts.
+The API we created can search for posts by language. I put the axios request inside a use effect so every time the selected language changes, an axios request will be made with the new URL. From there i created three functions all of which get posts by level. They are teachers, students and the default, all posts.
 
 The next step was to make a function which i named filtering to chose which one of these to display. This displays the teacher, student or all posts and uses useState to update a variable to contain the information inside it to map and display to the user. 
 
@@ -136,7 +136,7 @@ const [posts, updatePosts] = useState([])
 ```
 ### Comments
 Another solo job i had was the comments function for the posts. 
-As the comments were nested inside the post data, there was no need to create an endpoint in the backend to get comments. Instead to get the comment data i had to get the data for the posts and find it inside there. Due to the way this was set up, everytime a comment was created, edited or deleted the function fetchData would be called in order for the updates to be displayed.
+As the comments were nested inside the post data, there was no need to create an endpoint in the backend to get comments. Instead to get the comment data i had to get the data for the posts and find it inside there. Due to the way this was set up, every time a comment was created, edited or deleted the function fetchData would be called in order for the updates to be displayed.
 
 The most challenging attribute for the comments section of this page was the editing function. This was handled in two stages/functions. The two functions are named handleEditCommentOne and handleEditCommentTwo as can be seen below. The first function checks the author of the comment with the user that is currently logged in. It then gets the content and puts it in a text box where users can edit what's inside. The second function takes whatever the value of the textbox is (eddited comment) and uses an axios request to edit the comment. This along with the code for adding and deleting comments has been added below:
 
@@ -214,7 +214,7 @@ async function fetchData() {
 * Website functionality working without a hitch
 
 ## Challenges 
-* We really struggled with the creation of the tables and trying to implement additional many to many tables. We realised that this was not neccesary for what we were looking to display on the front end so we redid our models and the correct id's the the relationalships successfully displayed on Table Plus.
+* We really struggled with the creation of the tables and trying to implement additional many to many tables. We realised that this was not necessary for what we were looking to display on the front end so we redid our models and the correct id's so the relationships successfully displayed on Table Plus.
 
 * Filtering the posts depending on what the user wants to see
 
